@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "728696852064",
+    "firebase_url": "https://bruinstrooms.firebaseio.com",
+    "project_id": "bruinstrooms",
+    "storage_bucket": "bruinstrooms.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:728696852064:android:60b329fa4040432b",
+        "android_client_info": {
+          "package_name": "hackerbois.bruinstrooms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "728696852064-0abqpj4jv7pakvkvrq1lf8gb4clnfp77.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWbJ5-Lj3qSN5I9SgpFf07BZYklwHSlQk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
