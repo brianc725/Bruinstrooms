@@ -2,6 +2,7 @@ package hackerbois.bruinstrooms;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -22,17 +23,29 @@ public class MainActivity extends AppCompatActivity {
 
         //Initialize database reference
         mDatabase = FirebaseDatabase.getInstance();
-        restroomsRef = mDatabase.getReference("restrooms");
+        restroomsRef = mDatabase.getReference();
 
+        initializeRestrooms();
+    }
+
+    private void initializeRestrooms() {
         //test with passing in an object that we created
         Restroom test = new Restroom("Boelter West Wing", "male");
-        restrooms.put("BWW", test.toFirebaseObject());
+       // restrooms.put("BWW", test.toFirebaseObject());
 
         Restroom test2 = new Restroom("Dodd Basement AG", "all-gender");
-        restrooms.put("DBA", test2.toFirebaseObject());
+        // restrooms.put("DBA", test2.toFirebaseObject())
 
-        restroomsRef.updateChildren(restrooms);
+        Restroom test3 = new Restroom("Boelter Penthouse F", "female");
+        test3.setRating(4.5);
+        test3.setRating(3.0);
+        test3.setRating(3.5);
+        // restroomsRef.updateChildren(restrooms);
 
+        //using set value will override object, access with child directly to update fields
+        restroomsRef.child("restrooms").child(test.getName()).setValue(test);
+        restroomsRef.child("restrooms").child(test2.getName()).setValue(test2);
+        restroomsRef.child("restrooms").child(test3.getName()).setValue(test3);
     }
 
     /*

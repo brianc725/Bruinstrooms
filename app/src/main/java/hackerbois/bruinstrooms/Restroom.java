@@ -1,19 +1,25 @@
 package hackerbois.bruinstrooms;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Created by brianchan on 2/15/18.
  */
-
+@IgnoreExtraProperties
 public class Restroom {
 
     private String name;
-    private double sumRating; //add up the ratings
-    private double numberOfRatings; //how many ratings this restroom has
+    private String sumRating; //add up the ratings, must be String for firebase
+    private String numberOfRatings; //how many ratings this restroom has
     private String gender;
     // some type of private comment class to hold the message, date and time, and username
+
+    public Restroom() {
+        //Default constructor required for calls to DataSnapshat.getValue(User.class)
+    }
 
     /**
      * Creates a new <code>Restroom</code> instance.
@@ -25,10 +31,10 @@ public class Restroom {
      *                  the restroom is male, female, or all-gender
     */
     public Restroom(String restroomname, String gendermf) {
-        name = restroomname; //update the restroom name
-        gender = gendermf; //determine gender of restroom
-        sumRating = 0;
-        numberOfRatings = 0;
+        this.name = restroomname; //update the restroom name
+        this.gender = gendermf; //determine gender of restroom
+        this.sumRating = "0";
+        this.numberOfRatings = "0";
     }
 
     //no setter functions for name or gender since those should never change
@@ -38,7 +44,7 @@ public class Restroom {
      * @return this Restroom's name.
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
@@ -46,7 +52,7 @@ public class Restroom {
      * @return the Restroom's gender
      */
     public String getGender() {
-        return gender;
+        return this.gender;
     }
 
     /**
@@ -55,17 +61,27 @@ public class Restroom {
      * @param newRating to update the rating of the restroom as users submit feedback
      */
     public void setRating(double newRating) {
-        sumRating += newRating;
-        numberOfRatings++;
+        double sum = Double.parseDouble(sumRating); //convert to double
+        sum = newRating + sum;
+        sumRating = String.valueOf(sum);
+        int num = Integer.parseInt(numberOfRatings);
+        num++;
+        numberOfRatings = String.valueOf(num);
     }
 
     /**
      * Get the average rating by dividing the sum of all the ratings by the number of ratings
      * @return
      */
-    public double getRating() {
-        double avg = sumRating/numberOfRatings;
-        return avg;
+    public String getRating() {
+        if (numberOfRatings == "0"){
+            return "0"; //0 reviews so 0 stars, must return immediately to avoid 0/0
+        }
+
+        double sum = Double.parseDouble(sumRating);
+        double num = Integer.parseInt(numberOfRatings);
+        double avg = sum/num;
+        return String.valueOf(avg);
     }
 
     /**
@@ -78,8 +94,8 @@ public class Restroom {
         HashMap<String,String> room =  new HashMap<String,String>();
         room.put("name", name);
         room.put("gender", gender);
-        room.put("sumRating", Double.toString(sumRating)); //convert to string
-        room.put("numberOfRatings", Double.toString(numberOfRatings));
+        room.put("sumRating", sumRating);
+        room.put("numberOfRatings", numberOfRatings);
 
         return room;
     }
