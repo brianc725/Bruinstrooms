@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         restrooms.put("BWW", test.toFirebaseObject());
 
         Restroom test2 = new Restroom("Dodd Basement AG", "all-gender");
-        restrooms.put("DBAG", test2.toFirebaseObject());
+        restrooms.put("DBA", test2.toFirebaseObject());
 
         restroomsRef.updateChildren(restrooms);
 
