@@ -17,6 +17,13 @@ public class Restroom {
     private String gender;
     // some type of private comment class to hold the message, date and time, and username
 
+    private String urinals;
+    private String urinalDividers;
+    private String stalls;
+    private String hasHandicap; //has a large stall for wheelchairs
+    private String sinks;
+    private String mirrors;
+
     public Restroom() {
         //Default constructor required for calls to DataSnapshat.getValue(User.class)
     }
@@ -26,15 +33,28 @@ public class Restroom {
      *
      * @param restroomname   a <code>String</code> value containing the
      *                      name of the restroom
-     *
      * @param gendermf  a <code>String</code> value containing whether
      *                  the restroom is male, female, or all-gender
+     * @param urinals the number of urinals this restrom contains; for female is 0
+     * @param urinalDividers whether or not there are dividers between the urinals, for female
+     *                       is false
+     * @param stalls the number of stalls the restroom contains
+     * @param hasHandicap whether or not the restroom has a handicap stall for wheelchairs
+     * @param sinks how many sinks this restroom has
+     * @param mirrors how many mirrors this restroom has
     */
-    public Restroom(String restroomname, String gendermf) {
+    public Restroom(String restroomname, String gendermf, int urinals, boolean urinalDividers,
+                    int stalls, boolean hasHandicap, int sinks, int mirrors) {
         this.name = restroomname; //update the restroom name
         this.gender = gendermf; //determine gender of restroom
         this.sumRating = "0";
         this.numberOfRatings = "0";
+        this.urinals = String.valueOf(urinals);
+        this.urinalDividers = String.valueOf(urinalDividers);
+        this.stalls = String.valueOf(stalls);
+        this.hasHandicap = String.valueOf(hasHandicap);
+        this.sinks = String.valueOf(sinks);
+        this.mirrors = String.valueOf(mirrors);
     }
 
     //no setter functions for name or gender since those should never change
@@ -71,7 +91,7 @@ public class Restroom {
 
     /**
      * Get the average rating by dividing the sum of all the ratings by the number of ratings
-     * @return
+     * @return average rating
      */
     public String getRating() {
         if (numberOfRatings == "0"){
@@ -82,6 +102,60 @@ public class Restroom {
         double num = Integer.parseInt(numberOfRatings);
         double avg = sum/num;
         return String.valueOf(avg);
+    }
+
+    /**
+     * Return the number of urinals this restroom has, female has 0
+     * @return String of the number of urinals
+     */
+    public String getUrinals() {
+        if (this.gender == "female") {
+            return "0";
+        }
+        return this.urinals;
+    }
+
+    /**
+     * Returns true or false for whether this restroom has urinal dividers
+     * @return String of t/f
+     */
+    public String getUrinalDividers() {
+        if (this.gender == "female") {
+            return "false";
+        }
+        return this.urinalDividers;
+    }
+
+    /**
+     * Return how many stalls this restroom has
+     * @return number of stalls
+     */
+    public String getStalls() {
+        return this.stalls;
+    }
+
+    /**
+     * Return whether or not this restroom has a large handicap stall
+     * @return t/f for handicap stall
+     */
+    public String getHasHandicap() {
+        return this.hasHandicap;
+    }
+
+    /**
+     * Return number of sinks this restroom has
+     * @return number of sinks
+     */
+    public String getSinks() {
+        return this.sinks;
+    }
+
+    /**
+     * Return number of mirrors that the restroom has
+     * @return string of number
+     */
+    public String getMirrors () {
+        return this.mirrors;
     }
 
     /**
