@@ -8,4 +8,5 @@
     <color name="darkerGray">#616161</color>
     <color name="ligherGray">#BDBDBD</color>
     <color name="colorPrimaryRipple">#423f51b5</color>
+    <color name="red">#ff0000</color>
 </resources>
