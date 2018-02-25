@@ -43,6 +43,7 @@ public class Restroom {
      * @param sinks how many sinks this restroom has
      * @param mirrors how many mirrors this restroom has
     */
+    /*
     public Restroom(String restroomname, String gendermf, int urinals, boolean urinalDividers,
                     int stalls, boolean hasHandicap, int sinks, int mirrors) {
         this.name = restroomname; //update the restroom name
@@ -55,6 +56,21 @@ public class Restroom {
         this.hasHandicap = String.valueOf(hasHandicap);
         this.sinks = String.valueOf(sinks);
         this.mirrors = String.valueOf(mirrors);
+    }
+    */
+
+    public Restroom(String restroomname, String gendermf, String urinals, String urinalDividers,
+                    String stalls, String hasHandicap, String sinks, String mirrors) {
+        this.name = restroomname; //update the restroom name
+        this.gender = gendermf; //determine gender of restroom
+        this.sumRating = "0";
+        this.numberOfRatings = "0";
+        this.urinals = urinals;
+        this.urinalDividers = urinalDividers;
+        this.stalls = stalls;
+        this.hasHandicap = hasHandicap;
+        this.sinks = sinks;
+        this.mirrors = mirrors;
     }
 
     //no setter functions for name or gender since those should never change
@@ -78,11 +94,12 @@ public class Restroom {
     /**
      * Submit a new rating to the Restroom
      * Adds 1 to the number of ratings to find correct average and adds the new rating to sum
-     * @param newRating to update the rating of the restroom as users submit feedback
+     * @param newRating to update the rating of the restroom as users submit feedback A STRING
      */
-    public void setRating(double newRating) {
+    public void setRating(String newRating) {
         double sum = Double.parseDouble(sumRating); //convert to double
-        sum = newRating + sum;
+        double numRate = Double.parseDouble(newRating);
+        sum = numRate + sum;
         sumRating = String.valueOf(sum);
         int num = Integer.parseInt(numberOfRatings);
         num++;
