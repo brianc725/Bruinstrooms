@@ -17,8 +17,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:elevation="16dp"
+        android:layout_alignParentStart="true"
         android:background="@color/white"
+        android:elevation="16dp"
         app:itemIconTint="@drawable/bottom_item_states"
         app:itemTextColor="@drawable/bottom_item_states"
         app:menu="@menu/bottom_navigation_main" />
