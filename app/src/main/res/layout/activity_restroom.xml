@@ -1,9 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="hackerbois.bruinstrooms.RestroomActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/RestroomName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Restroom Name"
+        android:textAlignment="center"
+        android:layout_marginTop="8dp"
+        android:textColor="@android:color/black"
+        android:textSize="24dp" />
+
+
+    <RatingBar
+        android:id="@+id/RatingBar"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize="0.1"
+        android:isIndicator="true"
+        />
+
+    <TextView
+        android:id="@+id/RestroomFeatures"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@android:color/black"
+        android:textAlignment="center"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Urinals: 5\nHas Dividers: Yes\nStalls: 8\nHandicap Accesible: No\n Sinks: 3\nMirrors: 2" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Comments"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:textColor="@android:color/black"
+        android:textSize="16dp" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/CommentRecycler"
+        android:layout_marginLeft="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>
