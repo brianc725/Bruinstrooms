@@ -1,11 +1,17 @@
 package hackerbois.bruinstrooms;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import junit.framework.Test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,12 +31,85 @@ public class MainActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance();
         restroomsRef = mDatabase.getReference();
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        //first page that user is gonna see
+        loadNearbyFragment();
+
+        initializeBottomNavBar();
 
         initializeRestrooms(); //TODO: Remove this call before publishing app or else data will
                                 //overwrite every time someone opens the app
     }
+
+    private void initializeBottomNavBar(){
+		//disable shifting animation in bottom bar
+		BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+		BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+
+		//setup listeners
+		bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+			@Override
+			public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+				switch(item.getItemId()){
+					case R.id.action_activity:
+						loadActivityFragment();
+						return true;
+					case R.id.action_bookmark:
+						loadBookMarkFragment();
+						return true;
+					case R.id.action_me:
+						loadMeFragment();
+						return true;
+					case R.id.action_nearby:
+						loadNearbyFragment();
+						return true;
+					case R.id.action_search:
+						loadSearchFragment();
+						return true;
+				}
+				return false;
+			}
+		});
+	}
+
+	private void loadActivityFragment(){
+		TesterFragment nearbyFragment = new TesterFragment();
+		nearbyFragment.setText("This is Activity");
+		FragmentTransaction ft = getFragmentManager().beginTransaction();
+		ft.replace(R.id.fl_fragment_frame, nearbyFragment);
+		ft.commit();
+	}
+
+	private void loadBookMarkFragment(){
+		TesterFragment nearbyFragment = new TesterFragment();
+		nearbyFragment.setText("This is BookMark");
+		FragmentTransaction ft = getFragmentManager().beginTransaction();
+		ft.replace(R.id.fl_fragment_frame, nearbyFragment);
+		ft.commit();
+	}
+
+	private void loadNearbyFragment(){
+		TesterFragment nearbyFragment = new TesterFragment();
+		nearbyFragment.setText("This is Nearby");
+		FragmentTransaction ft = getFragmentManager().beginTransaction();
+		ft.replace(R.id.fl_fragment_frame, nearbyFragment);
+		ft.commit();
+	}
+
+	private void loadMeFragment(){
+		TesterFragment nearbyFragment = new TesterFragment();
+		nearbyFragment.setText("This is Me");
+		FragmentTransaction ft = getFragmentManager().beginTransaction();
+		ft.replace(R.id.fl_fragment_frame, nearbyFragment);
+		ft.commit();
+	}
+
+	private void loadSearchFragment(){
+		TesterFragment nearbyFragment = new TesterFragment();
+		nearbyFragment.setText("This is Search");
+		FragmentTransaction ft = getFragmentManager().beginTransaction();
+		ft.replace(R.id.fl_fragment_frame, nearbyFragment);
+		ft.commit();
+	}
 
     private void initializeRestrooms() {
         /*

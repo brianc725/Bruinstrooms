@@ -5,13 +5,12 @@
                 android:layout_height="match_parent"
                 >
 
-    <!-- Content Container -->
-    <!--<imagevie-->
-        <!--android:id="@+id/bottom_shadow"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="4dp"-->
-        <!--android:background="@drawable/shadow"-->
-        <!--android:layout_above="@id/bottom_navigation"/>-->
+    <FrameLayout
+        android:id="@+id/fl_fragment_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_navigation">
+    </FrameLayout>
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
