@@ -4,4 +4,10 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#ffffff</color>
+    <color name="gray">#9E9E9E</color>
+    <color name="darkerGray">#616161</color>
+    <color name="ligherGray">#BDBDBD</color>
+    <color name="colorPrimaryRipple">#423f51b5</color>
+    <!--https://github.com/brianc725/Bruinstrooms.git-->
+    <!--test-->
 </resources>

@@ -1,5 +1,6 @@
 package hackerbois.bruinstrooms;
 
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -23,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
         //Initialize database reference
         mDatabase = FirebaseDatabase.getInstance();
         restroomsRef = mDatabase.getReference();
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
 
         initializeRestrooms(); //TODO: Remove this call before publishing app or else data will
                                 //overwrite every time someone opens the app
