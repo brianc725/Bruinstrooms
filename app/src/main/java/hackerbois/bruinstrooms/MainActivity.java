@@ -13,14 +13,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import junit.framework.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseDatabase mDatabase;
     private DatabaseReference restroomsRef;
-    private Map<String, Object> restrooms = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
