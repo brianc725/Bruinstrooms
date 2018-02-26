@@ -1,17 +1,23 @@
 package hackerbois.bruinstrooms;
 
-import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import junit.framework.Test;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
         initializeRestrooms(); //TODO: Remove this call before publishing app or else data will
                                 //overwrite every time someone opens the app
+
+        AsyncTaskRunner runner = new AsyncTaskRunner();
+        runner.execute(); //TODO: VINCE THIS IS TEMPORARY
     }
 
     private void initializeBottomNavBar(){
@@ -166,6 +175,89 @@ public class MainActivity extends AppCompatActivity {
         //continue with female 5th floor to 8th floor
 
 
+    }
+
+    private class AsyncTaskRunner extends AsyncTask<String, String, ArrayList<Restroom>> {
+        ArrayList <Restroom> RestroomList;
+        ProgressDialog progressDialog;
+
+        @Override
+        protected ArrayList<Restroom> doInBackground(String... params) {
+            /*
+            publishProgress("Sleeping..."); // Calls onProgressUpdate()
+            try {
+                int time = Integer.parseInt(params[0])*1000;
+
+                Thread.sleep(time);
+                resp = "Slept for " + params[0] + " seconds";
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                resp = e.getMessage();
+            } catch (Exception e) {
+                e.printStackTrace();
+                resp = e.getMessage();
+            }*/
+            RestroomList = new ArrayList<>();
+            RestroomList.clear();
+
+            final DatabaseReference restroomsRef = mDatabase.getReference("restrooms"); //grab all the restrooms
+            restroomsRef.orderByChild("name").addChildEventListener(new ChildEventListener() { //sort by name, doesn't really matter though
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    Restroom room = dataSnapshot.getValue(Restroom.class); //get the restroom
+                    RestroomList.add(room); //add it to the array list
+                }
+
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                    Restroom room = dataSnapshot.getValue(Restroom.class);
+                    RestroomList.add(room);
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+                    Restroom room = dataSnapshot.getValue(Restroom.class);
+                    RestroomList.add(room);
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                    Restroom room = dataSnapshot.getValue(Restroom.class);
+                    RestroomList.add(room);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            return RestroomList;
+        }
+
+
+        //@Override
+        protected void onPostExecute(String result) {
+            // execution of result of Long time consuming operation
+          /* progressDialog.dismiss();
+            finalResult.setText(result);*/
+        }
+
+
+        @Override
+        protected void onPreExecute() {
+           /*
+            progressDialog = ProgressDialog.show(MainActivity.this,
+                    "ProgressDialog",
+                    "Wait for "+time.getText().toString()+ " seconds"); */
+        }
+
+
+        @Override
+        protected void onProgressUpdate(String... text) {
+           // finalResult.setText(text[0]);
+
+        }
     }
 
     /*
