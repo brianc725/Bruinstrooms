@@ -2,9 +2,6 @@ package hackerbois.bruinstrooms;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 /**
  * Created by brianchan on 2/15/18.
  */
@@ -138,7 +135,7 @@ public class Restroom {
      */
     public String getUrinalDividers() {
         if (this.gender == "female") {
-            return "false";
+            return "no";
         }
         return this.urinalDividers;
     }
@@ -173,22 +170,6 @@ public class Restroom {
      */
     public String getMirrors () {
         return this.mirrors;
-    }
-
-    /**
-     * Convert our Class into a firebase object since Firebase can only accept data
-     * structures such as a HashMap, which is what we used in this case.
-     * Need to ensure when we access again we convert them back to doubles
-     * @return Hashmap to the converted restroom
-     */
-    public HashMap<String,String> toFirebaseObject() {
-        HashMap<String,String> room =  new HashMap<String,String>();
-        room.put("name", name);
-        room.put("gender", gender);
-        room.put("sumRating", sumRating);
-        room.put("numberOfRatings", numberOfRatings);
-
-        return room;
     }
 
 
