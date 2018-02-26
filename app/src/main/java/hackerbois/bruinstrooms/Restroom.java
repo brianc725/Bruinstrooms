@@ -9,8 +9,8 @@ import com.google.firebase.database.IgnoreExtraProperties;
 public class Restroom {
 
     private String name;
-    private String sumRating; //add up the ratings, must be String for firebase
-    private String numberOfRatings; //how many ratings this restroom has
+    private String sumRating = "0"; //add up the ratings, must be String for firebase
+    private String numberOfRatings = "0"; //how many ratings this restroom has
     private String gender;
     // some type of private comment class to hold the message, date and time, and username
 
@@ -94,11 +94,11 @@ public class Restroom {
      * @param newRating to update the rating of the restroom as users submit feedback A STRING
      */
     public void setRating(String newRating) {
-        double sum = Double.parseDouble(sumRating); //convert to double
+        double sum = Double.parseDouble(this.sumRating); //convert to double
         double numRate = Double.parseDouble(newRating);
         sum = numRate + sum;
         sumRating = String.valueOf(sum);
-        int num = Integer.parseInt(numberOfRatings);
+        int num = Integer.parseInt(this.numberOfRatings);
         num++;
         numberOfRatings = String.valueOf(num);
     }
@@ -112,8 +112,8 @@ public class Restroom {
             return "0"; //0 reviews so 0 stars, must return immediately to avoid 0/0
         }
 
-        double sum = Double.parseDouble(sumRating);
-        double num = Integer.parseInt(numberOfRatings);
+        double sum = Double.parseDouble(this.sumRating);
+        double num = Integer.parseInt(this.numberOfRatings);
         double avg = sum/num;
         return String.valueOf(avg);
     }
