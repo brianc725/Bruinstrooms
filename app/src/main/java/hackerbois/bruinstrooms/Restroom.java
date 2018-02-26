@@ -95,8 +95,7 @@ public class Restroom {
      */
     public void setRating(String newRating) {
         double sum = Double.parseDouble(sumRating); //convert to double
-       // double numRate = Double.parseDouble(newRating);
-        double numRate = 50;
+        double numRate = Double.parseDouble(newRating);
         sum = numRate + sum;
         sumRating = String.valueOf(sum);
         int num = Integer.parseInt(numberOfRatings);
@@ -136,7 +135,7 @@ public class Restroom {
      */
     public String getUrinalDividers() {
         if (this.gender == "female") {
-            return "false";
+            return "no";
         }
         return this.urinalDividers;
     }
