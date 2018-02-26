@@ -63,11 +63,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:textSize="14dp"
             android:layout_weight="20"
             android:ems="10"
+            android:hint="Enter a comment."
             android:inputType="textPersonName"
-            android:text="Enter a comment." />
+            android:textSize="14dp" />
 
         <Button
             android:id="@+id/commentButton"
