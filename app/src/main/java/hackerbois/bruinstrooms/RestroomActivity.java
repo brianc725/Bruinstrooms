@@ -2,7 +2,6 @@ package hackerbois.bruinstrooms;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -20,10 +19,12 @@ public class RestroomActivity extends AppCompatActivity {
     private Restroom room;
     private String restroomName;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restroom);
+
 
     } //end of onCreate
 
