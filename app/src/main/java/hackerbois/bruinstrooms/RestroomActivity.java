@@ -16,7 +16,6 @@ public class RestroomActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference ref;
     private DatabaseReference thisRestroom;
-    private Restroom room;
     private String restroomName;
 
     /**
@@ -38,7 +37,7 @@ public class RestroomActivity extends AppCompatActivity {
     /**
      * get the room number formatted using abbreviation code
      * @param name name of the restroom in abbreviated format
-     * @return formattted room number
+     * @return formatted room number and floor
      */
     private String getRoomNumber(String name) {
         int i = Integer.parseInt(name.replaceAll(("\\D"), "")); //get the number out of the abbreviation
@@ -52,19 +51,17 @@ public class RestroomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restroom);
 
+        restroomName = "MS4317M"; //TODO: temporary place holder, when intent calls this activity pass in the restroom name
 
+        database = FirebaseDatabase.getInstance();
+
+        ref = database.getReference();
+        thisRestroom = ref.child("restrooms/" + restroomName);
     } //end of onCreate
 
     @Override
     protected void onResume() {
         super.onResume();
-
-        database = FirebaseDatabase.getInstance();
-
-        restroomName = "MS4317M"; //TODO: temporary place holder, when intent calls this activity pass in the restroom name
-
-        ref = database.getReference();
-        thisRestroom = ref.child("restrooms/" + restroomName);
 
         thisRestroom.addValueEventListener(new ValueEventListener() {
             @Override
@@ -99,7 +96,8 @@ public class RestroomActivity extends AppCompatActivity {
                     addon = " - ALL GENDER";
                 }
                 TextView title = (TextView) findViewById(R.id.RestroomName);
-                title.setText(name + addon);
+                title.setText(name + addon); //TODO: Remove this later, no longer needed
+                setTitle(name + addon); //set the top toolbar to the restroom name
 
                 TextView features = (TextView) findViewById(R.id.RestroomFeatures);
 
@@ -112,6 +110,6 @@ public class RestroomActivity extends AppCompatActivity {
                 //error
             }
         });
-    }
+    } //end of onResume
 
 }

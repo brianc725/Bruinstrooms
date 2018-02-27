@@ -23,4 +23,5 @@
         <activity android:name=".RestroomActivity" android:exported="true"></activity> //exported for direct launch
     </application>
 
+
 </manifest>
