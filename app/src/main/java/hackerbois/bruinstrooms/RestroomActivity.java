@@ -19,6 +19,33 @@ public class RestroomActivity extends AppCompatActivity {
     private Restroom room;
     private String restroomName;
 
+    /**
+     * get the full name of the building using the abbreviation code
+     * @param name name of the Restroom in the abbreviated format
+     * @return full building name
+     */
+    private String getBuilding(String name) {
+        String building = "";
+        if (name.matches("MS(.*)")) { //regex expression for MS<blah>
+            building = "Math Sciences Building";
+        }
+        if (name.matches("BH(.*)")) {
+            building = "Boelter Hall";
+        }
+        return building;
+    }
+
+    /**
+     * get the room number formatted using abbreviation code
+     * @param name name of the restroom in abbreviated format
+     * @return formattted room number
+     */
+    private String getRoomNumber(String name) {
+        int i = Integer.parseInt(name.replaceAll(("\\D"), "")); //get the number out of the abbreviation
+        int firstDigit = Integer.parseInt(Integer.toString(i).substring(0,1)); //get the first digit by pulling it out of string
+
+        return ("Floor: " + firstDigit + ", Room: " + i);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +77,15 @@ public class RestroomActivity extends AppCompatActivity {
                 String sinks = rest.getSinks();
                 String stalls = rest.getStalls();
                 String urinalDividers = rest.getUrinalDividers();
+
+                String building = getBuilding(name); //EX: Math Sciences Building
+                String roomNumber = getRoomNumber(name); //EX: Floor: 4, Room: 4317
+
+                //substring out the M, F, or A off the end of the abbreviation
+                //TODO: remember that all-gender restroom abbrev. is A NOT AG as previously planned
+                if (name != null && name.length() > 0) { //ensure not null and length > 0
+                    name = name.substring(0, name.length() -1); //keep everything but that last letter
+                }
 
                 String gender = rest.getGender();
                 String addon;                       //for labeling which gender restroom it is
