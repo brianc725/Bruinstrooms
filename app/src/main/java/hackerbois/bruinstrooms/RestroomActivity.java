@@ -110,8 +110,17 @@ public class RestroomActivity extends AppCompatActivity {
                 String message = "Urinals: " + urinals + "\nUrinal Dividers: " + urinalDividers + "\nStalls: " + stalls + "\nHandicap Accesible: " + hasHandicap + "\n Sinks: " + sinks+ "\nMirrors: " + mirrors;
                 features.setText(message); //set the new text
 
-                float rating = Float.parseFloat(rest.getRating()); //rest.getRating() returns string
+                float rating = Float.parseFloat(rest.getAverageReview()); //use average score to put stars
                 ratingBar.setRating(rating); //set rating takes in a float only
+
+                TextView numberReviews = (TextView) findViewById(R.id.textNumReviews);
+                int numRates = Integer.parseInt(rest.getNumberOfRatings());
+                if (numRates == 1) {
+                    numberReviews.setText(numRates + " review"); //1 review
+                }
+                else {
+                    numberReviews.setText(numRates + " reviews"); //0, multiple number reviews
+                }
 
             }
 
