@@ -1,7 +1,11 @@
 package hackerbois.bruinstrooms;
 
+import android.content.DialogInterface;
+import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -20,7 +24,7 @@ public class RestroomActivity extends AppCompatActivity {
     private DatabaseReference ref;
     private DatabaseReference thisRestroom;
     private String restroomName;
-
+    private Restroom rest; //the current restroom object
     private RatingBar ratingBar;
 
     /**
@@ -51,6 +55,29 @@ public class RestroomActivity extends AppCompatActivity {
         return ("Floor: " + firstDigit + ", Room: " + i);
     }
 
+    public void showAlertDialogButtonClicked(View view) {
+
+        // setup the alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose a Rating");
+
+        // add a list
+        String[] nums = {"1", "2", "3", "4", "5"}; //
+        builder.setItems(nums, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                which++; //1 actually is in index 0, 5 is in index 4; add 1 to make consistent
+                String newRating = String.valueOf(which);
+                rest.setRating(newRating); //set the new rating based on the user choice
+                ref.child("restrooms").child(rest.getName()).setValue(rest); //update the db
+            }
+        });
+
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create(); //create the dialog box to pop up
+        dialog.show(); //show it to user
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +101,7 @@ public class RestroomActivity extends AppCompatActivity {
         thisRestroom.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Restroom rest = dataSnapshot.getValue(Restroom.class); //grab our Restroom object
+                rest = dataSnapshot.getValue(Restroom.class); //grab our Restroom object
                 String urinals = rest.getUrinals();
                 String name = rest.getName();
                 String hasHandicap = rest.getHasHandicap();  //get all the features from the clas

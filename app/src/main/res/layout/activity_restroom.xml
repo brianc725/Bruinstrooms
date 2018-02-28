@@ -118,6 +118,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="right"
             android:text="Make a Review"
+            android:onClick="showAlertDialogButtonClicked"
             />
 
     </LinearLayout> <!-- end of full rating bar linear layout -->
