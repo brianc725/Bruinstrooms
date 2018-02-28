@@ -20,6 +20,7 @@ public class Restroom {
     private String hasHandicap; //has a large stall for wheelchairs
     private String sinks;
     private String mirrors;
+    private String averageReview;
 
     public Restroom() {
         //Default constructor required for calls to DataSnapshat.getValue(User.class)
@@ -105,18 +106,11 @@ public class Restroom {
     }
 
     /**
-     * Get the average rating by dividing the sum of all the ratings by the number of ratings
-     * @return average rating
+     * Get the sum of ratings to be divided by the number of ratings
+     * @return sum of all ratings
      */
-    public String getRating() {
-        if (numberOfRatings.equals("0")){
-            return "0"; //0 reviews so 0 stars, must return immediately to avoid 0/0
-        }
-
-        double sum = Double.parseDouble(this.sumRating);
-        double num = Integer.parseInt(this.numberOfRatings);
-        double avg = sum/num;
-        return String.valueOf(avg);
+    public String getSumRating() {
+        return this.sumRating;
     }
 
     /**
@@ -181,4 +175,14 @@ public class Restroom {
         return this.numberOfRatings;
     }
 
+    public String getAverageReview() {
+        if (this.numberOfRatings.equals("0")){
+            return "0"; //0 reviews so 0 stars, must return immediately to avoid 0/0
+        }
+
+        double sum = Double.parseDouble(this.sumRating);
+        double num = Integer.parseInt(this.numberOfRatings);
+        double avg = sum/num;
+        return String.valueOf(avg);
+    }
 }
