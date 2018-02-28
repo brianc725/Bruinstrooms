@@ -29,59 +29,81 @@
         android:isIndicator="true"
         />
 
-    <TextView
-        android:id="@+id/RestroomFeatures"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textColor="@android:color/black"
-        android:textAlignment="center"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:textSize="15dp"
-        android:text="Urinals: 5\nUrinal Dividers: Yes\nStalls: 8\nHandicap Accesible: No\n Sinks: 3\nMirrors: 2" />
+        android:layout_height="match_parent">
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Comments"
-        android:layout_marginTop="4dp"
-        android:layout_marginLeft="8dp"
-        android:textColor="@android:color/black"
-        android:textSize="18dp" />
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/editComment"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_weight="20"
-            android:ems="10"
-            android:hint="Enter a comment."
-            android:inputType="textPersonName"
-            android:textSize="14dp" />
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/commentButton"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/RestroomFeatures"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="SEND" />
-    </LinearLayout>
+            android:layout_gravity="center"
+            android:textColor="@android:color/black"
+            android:textAlignment="center"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:textSize="15dp"
+            android:text="Urinals: 5\nUrinal Dividers: Yes\nStalls: 8\nHandicap Accesible: No\n Sinks: 3\nMirrors: 2" />
 
+
+            <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Comments"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="8dp"
+            android:textColor="@android:color/black"
+            android:textSize="18dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="20"
+                android:ems="10"
+                android:hint="Enter a comment."
+                android:inputType="textPersonName"
+                android:textSize="14dp" />
+
+            <Button
+                android:id="@+id/commentButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="SEND" />
+        </LinearLayout>
+
+            <Button
+                android:id="@+id/viewComments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="VIEW ALL COMMENTS" />
+
+        </LinearLayout> <!-- Linear layout inside scroll view -->
+
+    </ScrollView>
+
+
+<!-- TODO: MOVE THE COMMENTS TO A SEPARATE PAGE
     <android.support.v7.widget.RecyclerView
         android:id="@+id/CommentRecycler"
         android:layout_marginLeft="8dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
+-->
 
 </LinearLayout>
