@@ -9,4 +9,10 @@
         <item name="colorControlHighlight">@color/colorPrimaryRipple</item>
     </style>
 
+    <style name="restroomRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratingstars</item>
+        <item name="android:minHeight">22dip</item>
+        <item name="android:maxHeight">22dip</item>
+    </style>
+
 </resources>
