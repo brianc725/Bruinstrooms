@@ -1,0 +1,46 @@
+Design Pages for Bruinstrooms
+
+Contributors: 	Raymond Phan
+				Austin Zhang
+
+Major Tabs:
+
+	Nearby Tab ... INCOMPLETE
+		Description:	(Option 1) Using Geolocation tracking, this page will find the nearest building with restrooms that you can then further filter your options to provide a list of select restrooms
+						(Option 2) This page will first ask you to choose a building and the floor your are on using a drop-down list. It will then provide a list of the restrooms of the building sorted by the nearest (in terms of floors) restroom to your location (building, floor)
+
+	Search Tab ... INCOMPLETE
+		Description:	Initially shows a blank page with a search bar. This search bar will recognize strings (or partial strings if we have time) of either full names (Boeltor Hall, Math Sciences, etc.) or abbreviations (Boelter, MS, E4, 				etc.) and its corresponding floor, RM numbers if the user knows them.
+						Example expressions:	Boelter 1 1234, Boelter 1234, and Boelter Hall 1234 all refer to RM 1234 on Boelter hall, 1st floor.
+												MS or Math Sciences or Math Sciences Building will present a list of all Math Sciences Building's restrooms
+						NOTE: Yes I know that Nearby and Search both do the same thing, but just for content sake Nearby is limited to only building and floor with a drop-down menu, while Search does not have a filter option (you have to type it in like the registrar) but does have the option to locate a specific restroom
+
+	Me Tab ... UNDECIDED
+		Description:	This page (if attempted) will show all your personal statistics, i.e. your name, contact info., your reviews, etc.
+						NOTE: If anything, we can just have this tab to hold all the user's reviews
+
+	Recent ... INCOMPLETE
+		Description:	This page will show all recent bathroom pages you visited
+						NOTE: This is not the same as Me because this one will track your page views while Me would hold your reviews
+
+	Favorites ... INCOMPLETE
+		Description:	This page will hold all your favorite pages (as marked on the favorite button on each page)
+
+	NOTE: When I say for each of these descriptions that it shows you pages, I mean it will look like a small card with quick info like location (Boelter Hall 1234 1st floor) and its rating
+
+Indirect Pages:
+
+	Bathroom Page ... COMPLETE
+		Description:	I'll write this later
+
+	Review Page ... INCOMPLETE
+		Description:	Directed to this page only when the user decides to press the "MAKE A REVIEW" button in a Bathroom Page. From here, the user can give the restroom a rating and description (like a normal review process)
+
+	Send Warning (previously Send Emergency) ... INCOMPLETE
+		Description:	Similar to the review page, except its simpler in that the user will broadcast a message to anyone that visits this page for an allotted time
+
+	Share Button ... INCOMPLETE
+		Description:	This page will allow you to share this page with other Bruinstroom Users
+
+	Sidebar ... UNKNOWN
+		Description:	Not sure what should be here until all other pages are completed
