@@ -3,6 +3,7 @@ package hackerbois.bruinstrooms;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -17,6 +18,8 @@ public class RestroomActivity extends AppCompatActivity {
     private DatabaseReference ref;
     private DatabaseReference thisRestroom;
     private String restroomName;
+
+    private RatingBar ratingBar;
 
     /**
      * get the full name of the building using the abbreviation code
@@ -57,6 +60,9 @@ public class RestroomActivity extends AppCompatActivity {
 
         ref = database.getReference();
         thisRestroom = ref.child("restrooms/" + restroomName);
+
+        ratingBar = (RatingBar) findViewById(R.id.RatingBar); //get the rating bar object
+
     } //end of onCreate
 
     @Override
@@ -103,6 +109,10 @@ public class RestroomActivity extends AppCompatActivity {
 
                 String message = "Urinals: " + urinals + "\nUrinal Dividers: " + urinalDividers + "\nStalls: " + stalls + "\nHandicap Accesible: " + hasHandicap + "\n Sinks: " + sinks+ "\nMirrors: " + mirrors;
                 features.setText(message); //set the new text
+
+                float rating = Float.parseFloat(rest.getRating()); //rest.getRating() returns string
+                ratingBar.setRating(rating); //set rating takes in a float only
+
             }
 
             @Override
