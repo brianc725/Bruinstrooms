@@ -12,6 +12,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 public class RestroomActivity extends AppCompatActivity {
 
     private FirebaseDatabase database;
@@ -101,9 +103,12 @@ public class RestroomActivity extends AppCompatActivity {
                 else {
                     addon = " - ALL GENDER";
                 }
-                TextView title = (TextView) findViewById(R.id.RestroomName);
-                title.setText(name + addon); //TODO: Remove this later, no longer needed
+                TextView bldg = (TextView) findViewById(R.id.RestroomBuilding);
+                bldg.setText(building);
                 setTitle(name + addon); //set the top toolbar to the restroom name
+
+                TextView rmNum = (TextView) findViewById(R.id.RestroomFloor);
+                rmNum.setText(roomNumber);
 
                 TextView features = (TextView) findViewById(R.id.RestroomFeatures);
 

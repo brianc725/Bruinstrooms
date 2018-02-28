@@ -7,22 +7,53 @@
     android:orientation="vertical"
     tools:context="hackerbois.bruinstrooms.RestroomActivity">
 
-    <TextView
-        android:id="@+id/RestroomName"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Restroom Name"
-        android:textAlignment="center"
-        android:layout_marginTop="8dp"
-        android:textColor="@android:color/black"
-        android:textSize="24dp" />
+        android:layout_marginLeft="8dp"
+        android:orientation="horizontal">
+
+        <!-- Image profile goes here -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/RestroomBuilding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="Building"
+                android:textAlignment="center"
+                android:layout_marginTop="8dp"
+                android:textSize="18dp"
+                android:textColor="@android:color/black"
+                />
+
+            <TextView
+                android:id="@+id/RestroomFloor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="Floor"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
 
 
     <!-- Linear Layout for the Ratings -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -36,6 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
+            android:textColor="@android:color/black"
             android:text="Rating"
             />
 
@@ -80,7 +112,10 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -120,7 +155,6 @@
                 android:id="@+id/editComment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
                 android:layout_weight="20"
                 android:ems="10"
                 android:hint="Enter a comment."
