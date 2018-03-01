@@ -30,6 +30,7 @@ public class RestroomActivity extends AppCompatActivity {
 
     private LinearLayout featuresLayout;
     private boolean featuresOpened = false;
+    private String formattedMessage;
 
     /**
      * get the full name of the building using the abbreviation code
@@ -106,7 +107,7 @@ public class RestroomActivity extends AppCompatActivity {
 
                 if (featuresOpened == false) {
                     //expand
-                    featuresCollapse.setText("Amenities\nStuff\nStuff\nStuff");
+                    featuresCollapse.setText("Amenities \n" + formattedMessage);
                     featuresCollapse.setMaxLines(Integer.MAX_VALUE); //expand to add more lines
                     featuresOpened = true; //say that the box is opened now
                     featuresFull.setText("SHOW LESS"); //update the status for user
@@ -165,10 +166,18 @@ public class RestroomActivity extends AppCompatActivity {
                 TextView rmNum = (TextView) findViewById(R.id.RestroomFloor);
                 rmNum.setText(roomNumber);
 
-                TextView features = (TextView) findViewById(R.id.RestroomFeatures);
+                //format the strings for output
+                urinals = "Urinals: " + urinals;
+                urinalDividers = "Urinal Dividers: " + urinalDividers;
+                stalls = "Stalls:  " + stalls;
+                hasHandicap = " Handicap Accessible: " + hasHandicap;
+                mirrors = "Mirrors: " + mirrors;
+                sinks = "Sinks: " + sinks;
 
-                String message = "Urinals: " + urinals + "\nUrinal Dividers: " + urinalDividers + "\nStalls: " + stalls + "\nHandicap Accesible: " + hasHandicap + "\n Sinks: " + sinks+ "\nMirrors: " + mirrors;
-                features.setText(message); //set the new text
+                //format message for amenities section
+                formattedMessage = String.format("%-30.30s  %-30.30s%n", urinals, urinalDividers);
+                formattedMessage += String.format("%-30.30s  %-30.30s%n", stalls, hasHandicap);
+                formattedMessage += String.format("%-30.30s  %-30.30s", mirrors, sinks);
 
                 float rating = Float.parseFloat(rest.getAverageReview()); //use average score to put stars
                 ratingBar.setRating(rating); //set rating takes in a float only
