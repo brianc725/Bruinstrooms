@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -26,6 +27,9 @@ public class RestroomActivity extends AppCompatActivity {
     private String restroomName;
     private Restroom rest; //the current restroom object
     private RatingBar ratingBar;
+
+    private LinearLayout featuresLayout;
+    private boolean featuresOpened = false;
 
     /**
      * get the full name of the building using the abbreviation code
@@ -91,6 +95,30 @@ public class RestroomActivity extends AppCompatActivity {
         thisRestroom = ref.child("restrooms/" + restroomName);
 
         ratingBar = (RatingBar) findViewById(R.id.RatingBar); //get the rating bar object
+
+        featuresLayout = (LinearLayout) findViewById(R.id.featuresContainer);
+
+        featuresLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView featuresCollapse = (TextView) findViewById(R.id.featuresCollapse);
+                TextView featuresFull = (TextView) findViewById(R.id.featuresFull);
+
+                if (featuresOpened == false) {
+                    //expand
+                    featuresCollapse.setText("Amenities\nStuff\nStuff\nStuff");
+                    featuresCollapse.setMaxLines(Integer.MAX_VALUE); //expand to add more lines
+                    featuresOpened = true; //say that the box is opened now
+                    featuresFull.setText("SHOW LESS"); //update the status for user
+                }
+                else {
+                    //collapse
+                    featuresCollapse.setMaxLines(1); //reset lines to 1
+                    featuresOpened = false; //say box is closed again
+                    featuresFull.setText("SHOW MORE"); //update status for user
+                }
+            }
+        });
 
     } //end of onCreate
 
