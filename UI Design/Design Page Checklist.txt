@@ -9,7 +9,7 @@ Major Tabs:
 		Description:	(Option 1) Using Geolocation tracking, this page will find the nearest building with restrooms that you can then further filter your options to provide a list of select restrooms
 						(Option 2) This page will first ask you to choose a building and the floor your are on using a drop-down list. It will then provide a list of the restrooms of the building sorted by the nearest (in terms of floors) restroom to your location (building, floor)
 
-	Search Tab ... INCOMPLETE
+	Search Tab ... IN PROGRESS (1/2) - Austin
 		Description:	Initially shows a blank page with a search bar. This search bar will recognize strings (or partial strings if we have time) of either full names (Boeltor Hall, Math Sciences, etc.) or abbreviations (Boelter, MS, E4, 				etc.) and its corresponding floor, RM numbers if the user knows them.
 						Example expressions:	Boelter 1 1234, Boelter 1234, and Boelter Hall 1234 all refer to RM 1234 on Boelter hall, 1st floor.
 												MS or Math Sciences or Math Sciences Building will present a list of all Math Sciences Building's restrooms
