@@ -7,23 +7,23 @@ import com.google.firebase.database.IgnoreExtraProperties;
  */
 
 @IgnoreExtraProperties
-public class Comment {
+public class Reviews {
 
     private String author;
     private String text;
-    private String restroomID; //which restroom this comment is for
+    private String restroomID; //which restroom this review is for
 
-    public Comment() {
-        //Default constructor required for calls to DataSnapshot.getValue(Comment.class)
+    public Reviews() {
+        //Default constructor required for calls to DataSnapshot.getValue(Reviews.class)
     }
 
     /**
-     * Constructor for the comments
-     * @param restroomID which restroom this comment is for
-     * @param author the name of the person posting the comment
-     * @param text the comment message
+     * Constructor for the reviews
+     * @param restroomID which restroom this review is for
+     * @param author the name of the person posting the review
+     * @param text the review message
      */
-    public Comment(String restroomID, String author, String text) {
+    public Reviews(String restroomID, String author, String text) {
         this.restroomID = restroomID;
         this.author = author;
         this.text = text;

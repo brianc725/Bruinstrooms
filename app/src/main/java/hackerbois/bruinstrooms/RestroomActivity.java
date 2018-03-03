@@ -17,8 +17,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 public class RestroomActivity extends AppCompatActivity {
 
     private FirebaseDatabase database;
@@ -31,29 +29,6 @@ public class RestroomActivity extends AppCompatActivity {
     private LinearLayout featuresLayout;
     private boolean featuresOpened = false;
     private String formattedMessage;
-
-    public void showAlertDialogButtonClicked(View view) {
-
-        // setup the alert builder
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Choose a Rating");
-
-        // add a list
-        String[] nums = {"1", "2", "3", "4", "5"}; //
-        builder.setItems(nums, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                which++; //1 actually is in index 0, 5 is in index 4; add 1 to make consistent
-                String newRating = String.valueOf(which);
-                rest.setRating(newRating); //set the new rating based on the user choice
-                ref.child("restrooms").child(rest.getName()).setValue(rest); //update the db
-            }
-        });
-
-        // create and show the alert dialog
-        AlertDialog dialog = builder.create(); //create the dialog box to pop up
-        dialog.show(); //show it to user
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,4 +131,26 @@ public class RestroomActivity extends AppCompatActivity {
         });
     } //end of onResume
 
+    public void showAlertDialogButtonClicked(View view) {
+
+        // setup the alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose a Rating");
+
+        // add a list
+        String[] nums = {"1", "2", "3", "4", "5"}; //
+        builder.setItems(nums, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                which++; //1 actually is in index 0, 5 is in index 4; add 1 to make consistent
+                String newRating = String.valueOf(which);
+                rest.setRating(newRating); //set the new rating based on the user choice
+                ref.child("restrooms").child(rest.getName()).setValue(rest); //update the db
+            }
+        });
+
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create(); //create the dialog box to pop up
+        dialog.show(); //show it to user
+    }
 }

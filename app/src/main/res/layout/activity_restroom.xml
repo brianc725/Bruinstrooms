@@ -117,7 +117,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="right"
-            android:text="Make a Review"
+            android:text="Rate"
             android:onClick="showAlertDialogButtonClicked"
             />
 
@@ -226,7 +226,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Comments"
+            android:text="Reviews"
             android:layout_marginTop="4dp"
             android:textColor="@android:color/black"
             android:textSize="18dp" />
@@ -238,17 +238,17 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/editComment"
+                android:id="@+id/editReview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="20"
                 android:ems="10"
-                android:hint="Enter a comment."
+                android:hint="Enter a review."
                 android:inputType="textPersonName"
                 android:textSize="14dp" />
 
             <Button
-                android:id="@+id/commentButton"
+                android:id="@+id/submitReview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -256,7 +256,7 @@
         </LinearLayout>
 
             <Button
-                android:id="@+id/viewComments"
+                android:id="@+id/viewReviews"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -267,9 +267,9 @@
     </ScrollView>
 
 
-<!-- TODO: MOVE THE COMMENTS TO A SEPARATE PAGE
+<!-- TODO: MOVE THE Reviews TO A SEPARATE PAGE
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/CommentRecycler"
+        android:id="@+id/ReviewRecycler"
         android:layout_marginLeft="8dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
