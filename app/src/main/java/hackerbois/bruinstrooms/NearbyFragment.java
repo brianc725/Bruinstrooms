@@ -28,6 +28,7 @@ public class NearbyFragment extends Fragment {
 	private FirebaseDatabase mDatabase;
 	private DatabaseReference restroomsRef;
 	private ArrayList<Restroom> RestroomList;
+	private NearbyAdapter mAdaptor;
 
 	@Nullable
 	@Override
@@ -59,10 +60,11 @@ public class NearbyFragment extends Fragment {
 		//TODO: write the load routine to pull data from firebase (pass the resulting arraylist to adapter)
 		mPBar.setVisibility(View.VISIBLE); //show loading circle
 
-		/*
-		NearbyAdapter adapter = new NearbyAdapter(pullRoomData());
+
+		NearbyAdapter adapter = new NearbyAdapter(RestroomList);
+		mAdaptor = adapter;
 		mRoomView.setAdapter(adapter);
-		adapter.notifyDataSetChanged(); */
+		adapter.notifyDataSetChanged();
 
 		mPBar.setVisibility(View.INVISIBLE);
 	}
@@ -146,6 +148,8 @@ public class NearbyFragment extends Fragment {
 
 			}
 		});
+
+		mAdaptor.refreshDataSource(RestroomList);
 	}
 
 	private void initLoad(){
