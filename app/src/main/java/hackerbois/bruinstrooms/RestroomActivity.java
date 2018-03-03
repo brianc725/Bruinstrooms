@@ -1,7 +1,6 @@
 package hackerbois.bruinstrooms;
 
 import android.content.DialogInterface;
-import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -158,7 +157,7 @@ public class RestroomActivity extends AppCompatActivity {
 
     public void ReviewSubmission(View view) {
         EditText revMessage = (EditText) findViewById(R.id.editReview);
-        String message = revMessage.getText().toString(); //get the message from the text box
+        final String message = revMessage.getText().toString(); //get the message from the text box
 
         if (message.matches("")) //make sure not empty string
         {
@@ -166,24 +165,73 @@ public class RestroomActivity extends AppCompatActivity {
             return;
         }
 
-        final Reviews review = new Reviews(restroomName, "anonymous", message); //make a review
-        revMessage.setText(""); //reset edit text
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final EditText edittext = new EditText(RestroomActivity.this);
 
-        final DatabaseReference currentRef = ref.child("comments").child(restroomName);
+        builder.setMessage("Enter a name with your review: ");
+        builder.setTitle("Name Entry (Optional)");
 
-        currentRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        builder.setView(edittext);
+
+        builder.setPositiveButton("Send Name", new DialogInterface.OnClickListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                long offset = dataSnapshot.getChildrenCount(); //find the offset value so no overwrite
-                String off = String.valueOf(offset);
-                currentRef.child(off).setValue(review); //write the new review without overwriting
-            }
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String reviewer = edittext.getText().toString();
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                if (reviewer.matches(""))
+                {
+                    reviewer = "anonymous"; //if no name entered but they still pressed entered just make anon
+                }
 
+                final Reviews review = new Reviews(restroomName, reviewer, message); //make a review with reviewer name
+                final DatabaseReference currentRef = ref.child("comments").child(restroomName);
+
+                currentRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        long offset = dataSnapshot.getChildrenCount(); //find the offset value so no overwrite
+                        String off = String.valueOf(offset);
+                        currentRef.child(off).setValue(review); //write the new review without overwriting
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
+
+        builder.setNegativeButton("Be Anonymous", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                final Reviews review = new Reviews(restroomName, "anonymous", message); //make a review anonymous
+                final DatabaseReference currentRef = ref.child("comments").child(restroomName);
+
+                currentRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        long offset = dataSnapshot.getChildrenCount(); //find the offset value so no overwrite
+                        String off = String.valueOf(offset);
+                        currentRef.child(off).setValue(review); //write the new review without overwriting
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+
+
+        revMessage.setText(""); //reset edit text
+
+
 
     }
 }

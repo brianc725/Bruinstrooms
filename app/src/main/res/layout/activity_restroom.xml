@@ -242,31 +242,32 @@
             android:textSize="18dp" />
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/editReview"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="20"
-                android:ems="10"
-                android:hint="Enter a review."
-                android:inputType="textPersonName"
-                android:backgroundTint="@color/stableBlue"
-                android:textCursorDrawable="@drawable/color_cursor"
-                android:textSize="14dp" />
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/submitReview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="ReviewSubmission"
-                android:text="SEND" />
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/editReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="20"
+                    android:backgroundTint="@color/stableBlue"
+                    android:ems="10"
+                    android:hint="Enter a review."
+                    android:inputType="textPersonName"
+                    android:textColorHighlight="@color/lightestBlue"
+                    android:textCursorDrawable="@color/stableBlue"
+                    android:textSize="14dp" />
+
+                <Button
+                    android:id="@+id/submitReview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="ReviewSubmission"
+                    android:text="SEND" />
+            </LinearLayout>
 
             <Button
                 android:id="@+id/viewReviews"
