@@ -20,7 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RestroomActivity" android:exported="true"></activity> //exported for direct launch
+        <activity android:name=".RestroomActivity"
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden"
+            ></activity> //exported for direct launch
     </application>
 
 
