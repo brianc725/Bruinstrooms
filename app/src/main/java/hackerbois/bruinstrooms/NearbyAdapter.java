@@ -31,7 +31,10 @@ public class NearbyAdapter extends RecyclerView.Adapter {
 	@Override
 	public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 		NearbyViewHolder nvh = (NearbyViewHolder) holder;
-		nvh.roomName.setText(RestroomList.get(position).getName());
+		String unformatted = RestroomList.get(position).getName();
+		String gender = RestroomList.get(position).getGender();
+		nvh.roomName.setText(Helper.getLongName(unformatted, gender)); //update room name to proper format
+		nvh.roomBuilding.setText(Helper.getBuilding(unformatted)); //update room building to proper format
 	}
 
 	@Override
