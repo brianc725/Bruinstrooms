@@ -1,5 +1,7 @@
 package hackerbois.bruinstrooms;
 
+import android.content.res.Resources;
+
 /**
  * Created by brianchan on 3/2/18.
  */
@@ -58,6 +60,17 @@ public class Helper {
             addon = " - ALL GENDER";
         }
         return shortname + addon;
+    }
+
+
+    /**
+     * Converts dp values into px values
+     * @param dp - dp value that needs to be converted
+     * @return int representing the px value
+     */
+    public static int dpToPx(int dp)
+    {
+        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
     }
 
 }

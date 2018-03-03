@@ -167,11 +167,28 @@ public class RestroomActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         final EditText edittext = new EditText(RestroomActivity.this);
+        edittext.setHint("Name");
 
         builder.setMessage("Enter a name with your review: ");
         builder.setTitle("Name Entry (Optional)");
 
-        builder.setView(edittext);
+        LinearLayout parentLayout = new LinearLayout(this);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT
+        );
+
+        int left = Helper.dpToPx(20); //layout params takes px values not dp
+        int top = Helper.dpToPx(0);
+        int right = Helper.dpToPx(20);
+        int bottom = Helper.dpToPx(0);
+
+        layoutParams.setMargins(left, top, right, bottom); //make edit text more centered
+        edittext.setLayoutParams(layoutParams); //set the layout params
+        parentLayout.addView(edittext); //add the edit text to the linear layout
+
+        builder.setView(parentLayout); //add the entire linear layout with edittext inside to the dialog box
+//        builder.setView(edittext);
 
         builder.setPositiveButton("Send Name", new DialogInterface.OnClickListener() {
             @Override
@@ -227,11 +244,8 @@ public class RestroomActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
 
-
-
         revMessage.setText(""); //reset edit text
 
-
-
     }
+
 }
