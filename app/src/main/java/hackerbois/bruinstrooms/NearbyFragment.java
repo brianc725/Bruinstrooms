@@ -26,13 +26,18 @@ public class NearbyFragment extends Fragment {
 	private RecyclerView mRoomView;
 	private ProgressBar mPBar;
 	private FirebaseDatabase mDatabase;
+	private DatabaseReference restroomsRef;
+	private ArrayList<Restroom> RestroomList;
 
 	@Nullable
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.nearby_fragment, container, false);
 
-		//mDatabase = FirebaseDatabase.getInstance();
+		mDatabase = FirebaseDatabase.getInstance();
+		RestroomList = new ArrayList<>(); //make a new array list
+		restroomsRef = mDatabase.getReference("restrooms"); //grab all the restrooms
+		RestroomList.clear(); //clear array list
 
 		//initialize all member view variables
 		initViews(view);
@@ -54,9 +59,10 @@ public class NearbyFragment extends Fragment {
 		//TODO: write the load routine to pull data from firebase (pass the resulting arraylist to adapter)
 		mPBar.setVisibility(View.VISIBLE); //show loading circle
 
+		/*
 		NearbyAdapter adapter = new NearbyAdapter(pullRoomData());
 		mRoomView.setAdapter(adapter);
-		adapter.notifyDataSetChanged();
+		adapter.notifyDataSetChanged(); */
 
 		mPBar.setVisibility(View.INVISIBLE);
 	}
@@ -65,9 +71,10 @@ public class NearbyFragment extends Fragment {
 		this.mDatabase = mDatabase;
 	}
 
+/*
 	public ArrayList<Restroom> pullRoomData() {
 		final ArrayList<Restroom> RestroomList = new ArrayList<>();
-		RestroomList.clear();
+	//	RestroomList.clear();
 
 		final DatabaseReference restroomsRef = mDatabase.getReference("restrooms"); //grab all the restrooms
 		restroomsRef.orderByChild("name").addChildEventListener(new ChildEventListener() { //sort by name, doesn't really matter though
@@ -102,6 +109,43 @@ public class NearbyFragment extends Fragment {
 		});
 
 		return RestroomList;
+	}
+*/
+
+	@Override
+	public void onResume() { //run all the time in background
+		super.onResume();
+
+		restroomsRef.orderByChild("name").addChildEventListener(new ChildEventListener() { //sort by name, doesn't really matter though
+			@Override
+			public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+				Restroom room = dataSnapshot.getValue(Restroom.class); //get the restroom
+				RestroomList.add(room); //add it to the array list
+			}
+
+			@Override
+			public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+				Restroom room = dataSnapshot.getValue(Restroom.class);
+				RestroomList.add(room);
+			}
+
+			@Override
+			public void onChildRemoved(DataSnapshot dataSnapshot) {
+				Restroom room = dataSnapshot.getValue(Restroom.class);
+				RestroomList.add(room);
+			}
+
+			@Override
+			public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+				Restroom room = dataSnapshot.getValue(Restroom.class);
+				RestroomList.add(room);
+			}
+
+			@Override
+			public void onCancelled(DatabaseError databaseError) {
+
+			}
+		});
 	}
 
 	private void initLoad(){
