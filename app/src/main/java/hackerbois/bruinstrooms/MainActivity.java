@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         initializeRestrooms(); //TODO: Remove this call before publishing app or else data will
                                 //overwrite every time someone opens the app
 
-        AsyncTaskRunner runner = new AsyncTaskRunner();
-        runner.execute(); //TODO: VINCE THIS IS TEMPORARY
+//        AsyncTaskRunner runner = new AsyncTaskRunner();
+//        runner.execute(); //TODO: VINCE THIS IS TEMPORARY
     }
 
     private void initializeBottomNavBar(){
@@ -91,8 +91,8 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	private void loadNearbyFragment(){
-		TesterFragment nearbyFragment = new TesterFragment();
-		nearbyFragment.setText("This is Nearby");
+		NearbyFragment nearbyFragment = new NearbyFragment();
+		nearbyFragment.passParam(mDatabase);
 		FragmentTransaction ft = getFragmentManager().beginTransaction();
 		ft.replace(R.id.fl_fragment_frame, nearbyFragment);
 		ft.commit();
