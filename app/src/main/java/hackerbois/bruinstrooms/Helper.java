@@ -11,7 +11,7 @@ public class Helper {
      * @param name name of the Restroom in the abbreviated format
      * @return full building name
      */
-    public String getBuilding(String name) {
+    public static String getBuilding(String name) {
         String building = "";
         if (name.matches("MS(.*)")) { //regex expression for MS<blah>
             building = "Math Sciences Building";
@@ -27,7 +27,7 @@ public class Helper {
      * @param name name of the restroom in abbreviated format
      * @return formatted room number and floor
      */
-    public String getRoomNumber(String name) {
+    public static String getRoomNumber(String name) {
         int i = Integer.parseInt(name.replaceAll(("\\D"), "")); //get the number out of the abbreviation
         int firstDigit = Integer.parseInt(Integer.toString(i).substring(0,1)); //get the first digit by pulling it out of string
 
@@ -40,7 +40,7 @@ public class Helper {
      * @param gender the gender of the restroom
      * @return the long name of the restroom, eg. MS4317 - MALE
      */
-    public String getLongName(String shortname, String gender) {
+    public static String getLongName(String shortname, String gender) {
         //substring out the M, F, or A off the end of the abbreviation
         //TODO: remember that all-gender restroom abbrev. is A NOT AG as previously planned
         if (shortname != null && shortname.length() > 0) { //ensure not null and length > 0

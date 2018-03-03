@@ -27,7 +27,6 @@ public class RestroomActivity extends AppCompatActivity {
     private String restroomName;
     private Restroom rest; //the current restroom object
     private RatingBar ratingBar;
-    private Helper helper;
 
     private LinearLayout featuresLayout;
     private boolean featuresOpened = false;
@@ -62,7 +61,6 @@ public class RestroomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restroom);
 
         restroomName = "MS4317M"; //TODO: temporary place holder, when intent calls this activity pass in the restroom name
-        helper = new Helper();
         database = FirebaseDatabase.getInstance();
 
         ref = database.getReference();
@@ -112,11 +110,11 @@ public class RestroomActivity extends AppCompatActivity {
                 String stalls = rest.getStalls();
                 String urinalDividers = rest.getUrinalDividers();
 
-                String building = helper.getBuilding(name); //EX: Math Sciences Building
-                String roomNumber = helper.getRoomNumber(name); //EX: Floor: 4, Room: 4317
+                String building = Helper.getBuilding(name); //EX: Math Sciences Building
+                String roomNumber = Helper.getRoomNumber(name); //EX: Floor: 4, Room: 4317
 
                 String gender = rest.getGender();
-                String fullname = helper.getLongName(name, gender); //get expanded restroom name
+                String fullname = Helper.getLongName(name, gender); //get expanded restroom name
                 TextView bldg = (TextView) findViewById(R.id.RestroomBuilding);
                 bldg.setText(building);
                 setTitle(fullname); //set the top toolbar to the restroom name
