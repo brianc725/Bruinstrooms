@@ -123,24 +123,28 @@ public class NearbyFragment extends Fragment {
 			public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 				Restroom room = dataSnapshot.getValue(Restroom.class); //get the restroom
 				RestroomList.add(room); //add it to the array list
+				mAdaptor.notifyDataSetChanged();
 			}
 
 			@Override
 			public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 				Restroom room = dataSnapshot.getValue(Restroom.class);
 				RestroomList.add(room);
+				mAdaptor.notifyDataSetChanged();
 			}
 
 			@Override
 			public void onChildRemoved(DataSnapshot dataSnapshot) {
 				Restroom room = dataSnapshot.getValue(Restroom.class);
 				RestroomList.add(room);
+				mAdaptor.notifyDataSetChanged();
 			}
 
 			@Override
 			public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 				Restroom room = dataSnapshot.getValue(Restroom.class);
 				RestroomList.add(room);
+				mAdaptor.notifyDataSetChanged();
 			}
 
 			@Override
@@ -149,7 +153,6 @@ public class NearbyFragment extends Fragment {
 			}
 		});
 
-		mAdaptor.refreshDataSource(RestroomList);
 	}
 
 	private void initLoad(){
