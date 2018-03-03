@@ -5,11 +5,13 @@ import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -152,5 +154,36 @@ public class RestroomActivity extends AppCompatActivity {
         // create and show the alert dialog
         AlertDialog dialog = builder.create(); //create the dialog box to pop up
         dialog.show(); //show it to user
+    }
+
+    public void ReviewSubmission(View view) {
+        EditText revMessage = (EditText) findViewById(R.id.editReview);
+        String message = revMessage.getText().toString(); //get the message from the text box
+
+        if (message.matches("")) //make sure not empty string
+        {
+            Toast.makeText(this, "You did not enter a review.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        final Reviews review = new Reviews(restroomName, "anonymous", message); //make a review
+        revMessage.setText(""); //reset edit text
+
+        final DatabaseReference currentRef = ref.child("comments").child(restroomName);
+
+        currentRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                long offset = dataSnapshot.getChildrenCount(); //find the offset value so no overwrite
+                String off = String.valueOf(offset);
+                currentRef.child(off).setValue(review); //write the new review without overwriting
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 }

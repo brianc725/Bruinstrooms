@@ -28,6 +28,18 @@ public class Reviews {
         this.author = author;
         this.text = text;
     }
+
+    public String getAuthor() {
+        return this.author;
+    }
+
+    public String getText() {
+        return this.text;
+    }
+
+    public String getRestroomID() {
+        return this.restroomID;
+    }
 }
 
 // Guide for integration into our thing: https://github.com/firebase/quickstart-android/blob/master/database/app/src/main/java/com/google/firebase/quickstart/database/PostDetailActivity.java

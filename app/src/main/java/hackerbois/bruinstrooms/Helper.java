@@ -1,5 +1,7 @@
 package hackerbois.bruinstrooms;
 
+import java.util.Random;
+
 /**
  * Created by brianchan on 3/2/18.
  */
@@ -59,4 +61,5 @@ public class Helper {
         }
         return shortname + addon;
     }
+
 }
