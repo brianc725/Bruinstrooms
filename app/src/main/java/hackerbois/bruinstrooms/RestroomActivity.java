@@ -27,38 +27,11 @@ public class RestroomActivity extends AppCompatActivity {
     private String restroomName;
     private Restroom rest; //the current restroom object
     private RatingBar ratingBar;
+    private Helper helper;
 
     private LinearLayout featuresLayout;
     private boolean featuresOpened = false;
     private String formattedMessage;
-
-    /**
-     * get the full name of the building using the abbreviation code
-     * @param name name of the Restroom in the abbreviated format
-     * @return full building name
-     */
-    private String getBuilding(String name) {
-        String building = "";
-        if (name.matches("MS(.*)")) { //regex expression for MS<blah>
-            building = "Math Sciences Building";
-        }
-        if (name.matches("BH(.*)")) {
-            building = "Boelter Hall";
-        }
-        return building;
-    }
-
-    /**
-     * get the room number formatted using abbreviation code
-     * @param name name of the restroom in abbreviated format
-     * @return formatted room number and floor
-     */
-    private String getRoomNumber(String name) {
-        int i = Integer.parseInt(name.replaceAll(("\\D"), "")); //get the number out of the abbreviation
-        int firstDigit = Integer.parseInt(Integer.toString(i).substring(0,1)); //get the first digit by pulling it out of string
-
-        return ("Floor: " + firstDigit + ", Room: " + i);
-    }
 
     public void showAlertDialogButtonClicked(View view) {
 
@@ -89,7 +62,7 @@ public class RestroomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restroom);
 
         restroomName = "MS4317M"; //TODO: temporary place holder, when intent calls this activity pass in the restroom name
-
+        helper = new Helper();
         database = FirebaseDatabase.getInstance();
 
         ref = database.getReference();
@@ -139,29 +112,14 @@ public class RestroomActivity extends AppCompatActivity {
                 String stalls = rest.getStalls();
                 String urinalDividers = rest.getUrinalDividers();
 
-                String building = getBuilding(name); //EX: Math Sciences Building
-                String roomNumber = getRoomNumber(name); //EX: Floor: 4, Room: 4317
-
-                //substring out the M, F, or A off the end of the abbreviation
-                //TODO: remember that all-gender restroom abbrev. is A NOT AG as previously planned
-                if (name != null && name.length() > 0) { //ensure not null and length > 0
-                    name = name.substring(0, name.length() -1); //keep everything but that last letter
-                }
+                String building = helper.getBuilding(name); //EX: Math Sciences Building
+                String roomNumber = helper.getRoomNumber(name); //EX: Floor: 4, Room: 4317
 
                 String gender = rest.getGender();
-                String addon;                       //for labeling which gender restroom it is
-                if (gender.equals("male")) {
-                    addon = " - MALE";
-                }
-                else if (gender.equals("female")) {
-                    addon = " - FEMALE";
-                }
-                else {
-                    addon = " - ALL GENDER";
-                }
+                String fullname = helper.getLongName(name, gender); //get expanded restroom name
                 TextView bldg = (TextView) findViewById(R.id.RestroomBuilding);
                 bldg.setText(building);
-                setTitle(name + addon); //set the top toolbar to the restroom name
+                setTitle(fullname); //set the top toolbar to the restroom name
 
                 TextView rmNum = (TextView) findViewById(R.id.RestroomFloor);
                 rmNum.setText(roomNumber);
