@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RestroomActivity" android:exported="true" android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".ReviewActivity"/>
+        <activity android:name=".ReviewActivity" android:exported="true"/>
 
     </application>
 
