@@ -39,21 +39,22 @@ public class Helper {
     /**
      * Get the long name of the restroom. eg. MS4317M turns into MS4317 - MALE
      * @param shortname the original ID code of the restroom, eg. MS4317M
-     * @param gender the gender of the restroom
      * @return the long name of the restroom, eg. MS4317 - MALE
      */
-    public static String getLongName(String shortname, String gender) {
+    public static String getLongName(String shortname) {
         //substring out the M, F, or A off the end of the abbreviation
         //TODO: remember that all-gender restroom abbrev. is A NOT AG as previously planned
+        char lastLetter = shortname.charAt(shortname.length()-1);
+
         if (shortname != null && shortname.length() > 0) { //ensure not null and length > 0
             shortname = shortname.substring(0, shortname.length() -1); //keep everything but that last letter
         }
 
         String addon;
-        if (gender.equals("male")) {
+        if (lastLetter == 'M') {
             addon = " - MALE";
         }
-        else if (gender.equals("female")) {
+        else if (lastLetter == 'F') {
             addon = " - FEMALE";
         }
         else {
@@ -61,7 +62,6 @@ public class Helper {
         }
         return shortname + addon;
     }
-
 
     /**
      * Converts dp values into px values

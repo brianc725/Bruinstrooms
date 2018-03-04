@@ -89,8 +89,8 @@ public class RestroomActivity extends AppCompatActivity {
                 String building = Helper.getBuilding(name); //EX: Math Sciences Building
                 String roomNumber = Helper.getRoomNumber(name); //EX: Floor: 4, Room: 4317
 
-                String gender = rest.getGender();
-                String fullname = Helper.getLongName(name, gender); //get expanded restroom name
+                //String gender = rest.getGender();
+                String fullname = Helper.getLongName(name); //get expanded restroom name
                 TextView bldg = (TextView) findViewById(R.id.RestroomBuilding);
                 bldg.setText(building);
                 setTitle(fullname); //set the top toolbar to the restroom name

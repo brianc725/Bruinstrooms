@@ -36,7 +36,7 @@ public class ReviewActivity extends AppCompatActivity {
 		reviewsRef = mDatabase.getReference().child("reviews/" + restroomName); //grab all the Reviews
 		ReviewsList.clear(); //clear array list
 
-		setTitle("Reviews");
+		setTitle(Helper.getLongName(restroomName) + " Reviews");
 
 	}
 
@@ -52,7 +52,7 @@ public class ReviewActivity extends AppCompatActivity {
 		reviewsRef = mDatabase.getReference().child("reviews/" + restroomName); //grab all the Reviews
 		ReviewsList.clear(); //clear array list
 
-		setTitle("Reviews");
+		setTitle(Helper.getLongName(restroomName) + " Reviews");
 	}
 
 	@Override
