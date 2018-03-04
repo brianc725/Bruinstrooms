@@ -117,10 +117,10 @@ public class RestroomActivity extends AppCompatActivity {
                 TextView numberReviews = (TextView) findViewById(R.id.textNumReviews);
                 int numRates = Integer.parseInt(rest.getNumberOfRatings());
                 if (numRates == 1) {
-                    numberReviews.setText(numRates + " review"); //1 review
+                    numberReviews.setText(numRates + " rating"); //1 rating
                 }
                 else {
-                    numberReviews.setText(numRates + " reviews"); //0, multiple number reviews
+                    numberReviews.setText(numRates + " ratings"); //0 or multiple number ratings
                 }
 
             }
@@ -201,7 +201,7 @@ public class RestroomActivity extends AppCompatActivity {
                 }
 
                 final Reviews review = new Reviews(restroomName, reviewer, message); //make a review with reviewer name
-                final DatabaseReference currentRef = ref.child("comments").child(restroomName);
+                final DatabaseReference currentRef = ref.child("reviews").child(restroomName);
 
                 currentRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -223,7 +223,7 @@ public class RestroomActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 final Reviews review = new Reviews(restroomName, "anonymous", message); //make a review anonymous
-                final DatabaseReference currentRef = ref.child("comments").child(restroomName);
+                final DatabaseReference currentRef = ref.child("reviews").child(restroomName);
 
                 currentRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
