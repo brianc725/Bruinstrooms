@@ -1,23 +1,22 @@
 package hackerbois.bruinstrooms;
 
 import android.content.DialogInterface;
-import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
 
 public class RestroomActivity extends AppCompatActivity {
 
@@ -32,64 +31,12 @@ public class RestroomActivity extends AppCompatActivity {
     private boolean featuresOpened = false;
     private String formattedMessage;
 
-    /**
-     * get the full name of the building using the abbreviation code
-     * @param name name of the Restroom in the abbreviated format
-     * @return full building name
-     */
-    private String getBuilding(String name) {
-        String building = "";
-        if (name.matches("MS(.*)")) { //regex expression for MS<blah>
-            building = "Math Sciences Building";
-        }
-        if (name.matches("BH(.*)")) {
-            building = "Boelter Hall";
-        }
-        return building;
-    }
-
-    /**
-     * get the room number formatted using abbreviation code
-     * @param name name of the restroom in abbreviated format
-     * @return formatted room number and floor
-     */
-    private String getRoomNumber(String name) {
-        int i = Integer.parseInt(name.replaceAll(("\\D"), "")); //get the number out of the abbreviation
-        int firstDigit = Integer.parseInt(Integer.toString(i).substring(0,1)); //get the first digit by pulling it out of string
-
-        return ("Floor: " + firstDigit + ", Room: " + i);
-    }
-
-    public void showAlertDialogButtonClicked(View view) {
-
-        // setup the alert builder
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Choose a Rating");
-
-        // add a list
-        String[] nums = {"1", "2", "3", "4", "5"}; //
-        builder.setItems(nums, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                which++; //1 actually is in index 0, 5 is in index 4; add 1 to make consistent
-                String newRating = String.valueOf(which);
-                rest.setRating(newRating); //set the new rating based on the user choice
-                ref.child("restrooms").child(rest.getName()).setValue(rest); //update the db
-            }
-        });
-
-        // create and show the alert dialog
-        AlertDialog dialog = builder.create(); //create the dialog box to pop up
-        dialog.show(); //show it to user
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restroom);
 
         restroomName = "MS4317M"; //TODO: temporary place holder, when intent calls this activity pass in the restroom name
-
         database = FirebaseDatabase.getInstance();
 
         ref = database.getReference();
@@ -139,29 +86,14 @@ public class RestroomActivity extends AppCompatActivity {
                 String stalls = rest.getStalls();
                 String urinalDividers = rest.getUrinalDividers();
 
-                String building = getBuilding(name); //EX: Math Sciences Building
-                String roomNumber = getRoomNumber(name); //EX: Floor: 4, Room: 4317
-
-                //substring out the M, F, or A off the end of the abbreviation
-                //TODO: remember that all-gender restroom abbrev. is A NOT AG as previously planned
-                if (name != null && name.length() > 0) { //ensure not null and length > 0
-                    name = name.substring(0, name.length() -1); //keep everything but that last letter
-                }
+                String building = Helper.getBuilding(name); //EX: Math Sciences Building
+                String roomNumber = Helper.getRoomNumber(name); //EX: Floor: 4, Room: 4317
 
                 String gender = rest.getGender();
-                String addon;                       //for labeling which gender restroom it is
-                if (gender.equals("male")) {
-                    addon = " - MALE";
-                }
-                else if (gender.equals("female")) {
-                    addon = " - FEMALE";
-                }
-                else {
-                    addon = " - ALL GENDER";
-                }
+                String fullname = Helper.getLongName(name, gender); //get expanded restroom name
                 TextView bldg = (TextView) findViewById(R.id.RestroomBuilding);
                 bldg.setText(building);
-                setTitle(name + addon); //set the top toolbar to the restroom name
+                setTitle(fullname); //set the top toolbar to the restroom name
 
                 TextView rmNum = (TextView) findViewById(R.id.RestroomFloor);
                 rmNum.setText(roomNumber);
@@ -199,5 +131,121 @@ public class RestroomActivity extends AppCompatActivity {
             }
         });
     } //end of onResume
+
+    public void showAlertDialogButtonClicked(View view) {
+
+        // setup the alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose a Rating");
+
+        // add a list
+        String[] nums = {"1", "2", "3", "4", "5"}; //
+        builder.setItems(nums, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                which++; //1 actually is in index 0, 5 is in index 4; add 1 to make consistent
+                String newRating = String.valueOf(which);
+                rest.setRating(newRating); //set the new rating based on the user choice
+                ref.child("restrooms").child(rest.getName()).setValue(rest); //update the db
+            }
+        });
+
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create(); //create the dialog box to pop up
+        dialog.show(); //show it to user
+    }
+
+    public void ReviewSubmission(View view) {
+        EditText revMessage = (EditText) findViewById(R.id.editReview);
+        final String message = revMessage.getText().toString(); //get the message from the text box
+
+        if (message.matches("")) //make sure not empty string
+        {
+            Toast.makeText(this, "You did not enter a review.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final EditText edittext = new EditText(RestroomActivity.this);
+        edittext.setHint("Name");
+
+        builder.setMessage("Enter a name with your review: ");
+        builder.setTitle("Name Entry (Optional)");
+
+        LinearLayout parentLayout = new LinearLayout(this);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT
+        );
+
+        int left = Helper.dpToPx(20); //layout params takes px values not dp
+        int top = Helper.dpToPx(0);
+        int right = Helper.dpToPx(20);
+        int bottom = Helper.dpToPx(0);
+
+        layoutParams.setMargins(left, top, right, bottom); //make edit text more centered
+        edittext.setLayoutParams(layoutParams); //set the layout params
+        parentLayout.addView(edittext); //add the edit text to the linear layout
+
+        builder.setView(parentLayout); //add the entire linear layout with edittext inside to the dialog box
+//        builder.setView(edittext);
+
+        builder.setPositiveButton("Send Name", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String reviewer = edittext.getText().toString();
+
+                if (reviewer.matches(""))
+                {
+                    reviewer = "anonymous"; //if no name entered but they still pressed entered just make anon
+                }
+
+                final Reviews review = new Reviews(restroomName, reviewer, message); //make a review with reviewer name
+                final DatabaseReference currentRef = ref.child("comments").child(restroomName);
+
+                currentRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        long offset = dataSnapshot.getChildrenCount(); //find the offset value so no overwrite
+                        String off = String.valueOf(offset);
+                        currentRef.child(off).setValue(review); //write the new review without overwriting
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
+
+        builder.setNegativeButton("Be Anonymous", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                final Reviews review = new Reviews(restroomName, "anonymous", message); //make a review anonymous
+                final DatabaseReference currentRef = ref.child("comments").child(restroomName);
+
+                currentRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        long offset = dataSnapshot.getChildrenCount(); //find the offset value so no overwrite
+                        String off = String.valueOf(offset);
+                        currentRef.child(off).setValue(review); //write the new review without overwriting
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        revMessage.setText(""); //reset edit text
+
+    }
 
 }

@@ -8,6 +8,7 @@
     <color name="darkerGray">#616161</color>
     <color name="ligherGray">#BDBDBD</color>
     <color name="colorPrimaryRipple">#423f51b5</color>
-    <!--https://github.com/brianc725/Bruinstrooms.git-->
-    <!--test-->
+    <color name="lightestBlue">#4FC3F7</color>
+    <color name="stableBlue">#03A9F4</color>
+    <color name="darkerBlue">#0277BD</color>
 </resources>

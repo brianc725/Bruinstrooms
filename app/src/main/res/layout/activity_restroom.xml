@@ -14,7 +14,17 @@
         android:layout_marginBottom="2dp"
         android:orientation="horizontal">
 
-        <!-- Image profile goes here -->
+        <!--TODO: get real circular image, this is a temporary image source -->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/RestroomProfilePhoto"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_android_black_24dp"
+            />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -117,7 +127,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="right"
-            android:text="Make a Review"
+            android:text="Rate"
             android:onClick="showAlertDialogButtonClicked"
             />
 
@@ -152,7 +162,7 @@
             android:id="@+id/featuresFull"
             android:layout_marginTop="1.5dp"
             android:text="SHOW MORE"
-            android:textColor="@color/darkerGray"
+            android:textColor="@color/lightestBlue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -226,37 +236,41 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Comments"
+            android:text="Reviews"
             android:layout_marginTop="4dp"
             android:textColor="@android:color/black"
             android:textSize="18dp" />
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/editComment"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="20"
-                android:ems="10"
-                android:hint="Enter a comment."
-                android:inputType="textPersonName"
-                android:textSize="14dp" />
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/editReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="20"
+                    android:backgroundTint="@color/stableBlue"
+                    android:ems="10"
+                    android:hint="Enter a review."
+                    android:inputType="textPersonName"
+                    android:textColorHighlight="@color/lightestBlue"
+                    android:textCursorDrawable="@color/stableBlue"
+                    android:textSize="14dp" />
+
+                <Button
+                    android:id="@+id/submitReview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="ReviewSubmission"
+                    android:text="SEND" />
+            </LinearLayout>
 
             <Button
-                android:id="@+id/commentButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="SEND" />
-        </LinearLayout>
-
-            <Button
-                android:id="@+id/viewComments"
+                android:id="@+id/viewReviews"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -267,9 +281,9 @@
     </ScrollView>
 
 
-<!-- TODO: MOVE THE COMMENTS TO A SEPARATE PAGE
+<!-- TODO: MOVE THE Reviews TO A SEPARATE PAGE
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/CommentRecycler"
+        android:id="@+id/ReviewRecycler"
         android:layout_marginLeft="8dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
