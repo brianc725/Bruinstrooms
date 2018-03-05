@@ -18,6 +18,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class RestroomActivity extends AppCompatActivity {
 
     private FirebaseDatabase database;
@@ -165,6 +169,10 @@ public class RestroomActivity extends AppCompatActivity {
             return;
         }
 
+        Date currentTime = Calendar.getInstance().getTime();
+        final SimpleDateFormat formatTime = new SimpleDateFormat("MM-dd-yy HH:mm:ss");
+        final String timestamp = formatTime.format(currentTime);
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         final EditText edittext = new EditText(RestroomActivity.this);
         edittext.setHint("Name");
@@ -200,7 +208,7 @@ public class RestroomActivity extends AppCompatActivity {
                     reviewer = "anonymous"; //if no name entered but they still pressed entered just make anon
                 }
 
-                final Reviews review = new Reviews(restroomName, reviewer, message); //make a review with reviewer name
+                final Reviews review = new Reviews(restroomName, reviewer, message, timestamp); //make a review with reviewer name
                 final DatabaseReference currentRef = ref.child("reviews").child(restroomName);
 
                 currentRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -222,7 +230,7 @@ public class RestroomActivity extends AppCompatActivity {
         builder.setNegativeButton("Be Anonymous", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                final Reviews review = new Reviews(restroomName, "anonymous", message); //make a review anonymous
+                final Reviews review = new Reviews(restroomName, "anonymous", message, timestamp); //make a review anonymous
                 final DatabaseReference currentRef = ref.child("reviews").child(restroomName);
 
                 currentRef.addListenerForSingleValueEvent(new ValueEventListener() {
