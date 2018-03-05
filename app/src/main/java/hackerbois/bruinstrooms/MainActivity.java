@@ -170,9 +170,20 @@ public class MainActivity extends AppCompatActivity {
         restroomsRef.child("restrooms").child(MS4922F.getName()).setValue(MS4922F);
         Restroom MS4211F = new Restroom("MS4211F", "female", "0", "no", "5", "no", "3", "1");
         restroomsRef.child("restrooms").child(MS4211F.getName()).setValue(MS4211F);
-        //continue with female 5th floor to 8th floor
-
-
+        Restroom MS5209F = new Restroom("MS5209F", "female", "0", "no", "6", "yes", "3", "1");
+        restroomsRef.child("restrooms").child(MS5209F.getName()).setValue(MS5209F);
+        Restroom MS5922F = new Restroom("MS5922F", "female", "0", "no", "5", "no", "3", "1");
+        restroomsRef.child("restrooms").child(MS5922F.getName()).setValue(MS5922F);
+        Restroom MS6213F = new Restroom("MS6213F", "female", "0", "no", "6", "yes", "3", "1");
+        restroomsRef.child("restrooms").child(MS6213F.getName()).setValue(MS6213F);
+        Restroom MS6922F = new Restroom("MS6922F", "female", "0", "no", "5", "no", "3", "1");
+        restroomsRef.child("restrooms").child(MS6922F.getName()).setValue(MS6922F);
+        Restroom MS7922F = new Restroom("MS7922F", "female", "0", "no", "6", "no", "3", "1");
+        restroomsRef.child("restrooms").child(MS7922F.getName()).setValue(MS7922F);
+        Restroom MS7211F = new Restroom("MS7211F", "female", "0", "no", "6", "yes", "3", "1");
+        restroomsRef.child("restrooms").child(MS7211F.getName()).setValue(MS7211F);
+        Restroom MS8922F = new Restroom("MS8922F", "female", "0", "no", "6", "no", "3", "1");
+        restroomsRef.child("restrooms").child(MS8922F.getName()).setValue(MS8922F);
     }
 
     private class AsyncTaskRunner extends AsyncTask<String, String, ArrayList<Restroom>> {
