@@ -51,7 +51,6 @@ Updated March 4, 2018
 ### Reviews Page
 - Add recycler adapter to recycler view the page for the reviews (Vince)
 - Indicate thtat there are no reveiws yet if array list size is 0 (Vince)
-- Update Reviews to have a timestamp so reviews can be ordered by time (Brian) 
 
 ### Search Page
 - everything
@@ -75,6 +74,7 @@ Updated March 4, 2018
 ### Restroom Page
 - Page shows basic information about restroom with amentities (Brian)
 - allows users to submit comments and put their names (Brian)
+- Reviews have a timestamp so reviews can be ordered by time (Brian) 
 
 ### Reviews Page
 - Backend work done for loading in the Reviews for that restroom into an ArrayList (Brian)
