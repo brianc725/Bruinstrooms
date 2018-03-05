@@ -5,7 +5,7 @@ Contributors: 	Raymond Phan
 
 Major Tabs:
 
-	Nearby Tab ... INCOMPLETE
+	Nearby Tab ... COMPLETE
 		Description:	(Option 1) Using Geolocation tracking, this page will find the nearest building with restrooms that you can then further filter your options to provide a list of select restrooms
 						(Option 2) This page will first ask you to choose a building and the floor your are on using a drop-down list. It will then provide a list of the restrooms of the building sorted by the nearest (in terms of floors) restroom to your location (building, floor)
 
