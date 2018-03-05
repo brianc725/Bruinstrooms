@@ -17,17 +17,17 @@ restrooms nearest you.
 ## Setup
 
 Clone directory and you're good to go. Ensure target API is for your system to ensure proper working. 
-If you are adding a new restroom, run the Python3 script 'RestroomGenerator.py' to generate
+If you are adding a new restroom, run the Python3 script `RestroomGenerator.py` to generate
 the syntax for the restroom to add a new restroom in the Firebase Database.
 
-Carefully add this in Main Activity in the initializeRestrooms() call under the previous other calls
+Carefully add this in Main Activity in the `initializeRestrooms()` call under the previous other calls
 of the same format. **THIS IS IMPORTANT:** Comment out the other restroom initializations that were there
-previously including the .setValue() calls on that restroom. This step is vital as if you do not do this,
+previously including the `.setValue()` calls on that restroom. This step is vital as if you do not do this,
 you will wipe out **ALL** ratings of the restrooms previously. 
 
 ## Deploying
 
-Remove initializeRestrooms() call from MainActivity.java in onCreate() or Restroom Data will be wiped 
+Remove `initializeRestrooms()` call from MainActivity.java in `onCreate()` or Restroom Data will be wiped 
 out every single time. 
 
 Contact Brian to update database permissions *before* deploying. 
