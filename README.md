@@ -44,9 +44,13 @@ Updated March 4, 2018
 - Load image of restroom building to template icon (Brian)
 - Load map image of restroom to template icon (Brian)
 - Send Emergency feature (Brian)
+- Use Helper class to get address depending on buiding name, link to Map activity (Brian)
 - Add to Favorites
 - Share Restroom 
 - Link the View Reviews button to the Reviews Page (Vince)
+
+### Map Page
+- Everything (Brian)
 
 ### Reviews Page
 - Add recycler adapter to recycler view the page for the reviews (Vince)
