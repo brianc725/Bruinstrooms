@@ -21,6 +21,15 @@ public class Helper {
         if (name.matches("BH(.*)")) {
             building = "Boelter Hall";
         }
+        if (name.matches("ACK(.*)")) {
+            building = "Ackerman Union";
+        }
+        if (name.matches("PAB(.*)")) {
+            building = "Physics and Astronomy Building";
+        }
+        if (name.matches("EIV(.*)")) {
+            building = "Engineering 4";
+        }
         return building;
     }
 
