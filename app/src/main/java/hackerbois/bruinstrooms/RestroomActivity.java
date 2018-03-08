@@ -1,6 +1,7 @@
 package hackerbois.bruinstrooms;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,7 +41,8 @@ public class RestroomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restroom);
 
-        restroomName = "MS4317M"; //TODO: temporary place holder, when intent calls this activity pass in the restroom name
+        Intent intent = getIntent();
+        restroomName = intent.getStringExtra("ROOM_NAME"); //TODO: temporary place holder, when intent calls this activity pass in the restroom name
         database = FirebaseDatabase.getInstance();
 
         ref = database.getReference();

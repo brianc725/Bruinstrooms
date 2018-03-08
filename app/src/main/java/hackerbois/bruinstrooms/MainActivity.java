@@ -53,20 +53,11 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 				switch(item.getItemId()){
-					case R.id.action_activity:
-						loadActivityFragment();
-						return true;
 					case R.id.action_bookmark:
 						loadBookMarkFragment();
 						return true;
-					case R.id.action_me:
-						loadMeFragment();
-						return true;
 					case R.id.action_nearby:
 						loadNearbyFragment();
-						return true;
-					case R.id.action_search:
-						loadSearchFragment();
 						return true;
 				}
 				return false;

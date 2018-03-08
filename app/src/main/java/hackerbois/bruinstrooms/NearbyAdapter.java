@@ -1,5 +1,7 @@
 package hackerbois.bruinstrooms;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,7 +17,7 @@ import java.util.ArrayList;
  */
 
 public class NearbyAdapter extends RecyclerView.Adapter {
-	ArrayList<Restroom> RestroomList;
+	private ArrayList<Restroom> RestroomList;
 
 	NearbyAdapter(ArrayList<Restroom> arg){
 		RestroomList = arg;
@@ -23,8 +25,17 @@ public class NearbyAdapter extends RecyclerView.Adapter {
 
 	@Override
 	public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+		final ViewGroup parentCopy = parent;
 		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.nearby_item, parent, false);
-		NearbyViewHolder nvh = new NearbyViewHolder(view);
+		final NearbyViewHolder nvh = new NearbyViewHolder(view);
+		nvh.itemView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(parentCopy.getContext(), RestroomActivity.class);
+				intent.putExtra("ROOM_NAME", RestroomList.get(nvh.getLayoutPosition()).getName());
+				parentCopy.getContext().startActivity(intent);
+			}
+		});
 		return nvh;
 	}
 
@@ -54,7 +65,7 @@ public class NearbyAdapter extends RecyclerView.Adapter {
 		TextView roomName;
 		TextView roomBuilding;
 
-		public NearbyViewHolder(View itemView) {
+		NearbyViewHolder(View itemView) {
 			super(itemView);
 			cv = itemView.findViewById(R.id.cv_room_card);
 			roomPhoto = itemView.findViewById(R.id.iv_room_photo);
