@@ -4,31 +4,15 @@
     <item
         android:id="@+id/action_nearby"
         android:title="@string/bottom_label_nearby"
-        android:icon="@drawable/ic_android_black_24dp"
-        android:checkable="true"
-        app:showAsAction="ifRoom"/>
-    <item
-        android:id="@+id/action_search"
-        android:title="@string/bottom_label_search"
-        android:icon="@drawable/ic_android_black_24dp"
-        android:checkable="true"
-        app:showAsAction="ifRoom"/>
-    <item
-        android:id="@+id/action_me"
-        android:title="@string/bottom_label_me"
-        android:icon="@drawable/ic_android_black_24dp"
-        android:checkable="true"
-        app:showAsAction="ifRoom"/>
-    <item
-        android:id="@+id/action_activity"
-        android:title="@string/bottom_label_activity"
-        android:icon="@drawable/ic_android_black_24dp"
+        android:icon="@drawable/ic_nearby"
         android:checkable="true"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_bookmark"
         android:title="@string/bottom_label_bookmarks"
-        android:icon="@drawable/ic_android_black_24dp"
+        android:icon="@drawable/ic_favorites"
         android:checkable="true"
         app:showAsAction="ifRoom"/>
+
+
 </menu>

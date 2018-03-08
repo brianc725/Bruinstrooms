@@ -4,5 +4,5 @@
     <string name="bottom_label_search">Search</string>
     <string name="bottom_label_me">Me</string>
     <string name="bottom_label_activity">Activity</string>
-    <string name="bottom_label_bookmarks">Bookmarks</string>
+    <string name="bottom_label_bookmarks">Favorites</string>
 </resources>
