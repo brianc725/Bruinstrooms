@@ -258,4 +258,10 @@ public class RestroomActivity extends AppCompatActivity {
 
     }
 
+    public void viewReview(View view){
+    	Intent intent = new Intent(this, ReviewActivity.class);
+    	intent.putExtra("ROOM_NAME", restroomName);
+    	this.startActivity(intent);
+	}
+
 }

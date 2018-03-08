@@ -5,4 +5,8 @@
     <string name="bottom_label_me">Me</string>
     <string name="bottom_label_activity">Activity</string>
     <string name="bottom_label_bookmarks">Favorites</string>
+    <string name="sample_username">[username]</string>
+    <string name="sample_comment">[comment]</string>
+    <string name="sample_timestamp">[insert timestamp here]</string>
+    <string name="no_review">No Review</string>
 </resources>
