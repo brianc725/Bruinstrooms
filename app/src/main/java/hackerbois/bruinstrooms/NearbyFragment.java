@@ -15,6 +15,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -23,6 +24,7 @@ import java.util.ArrayList;
  */
 
 public class NearbyFragment extends Fragment {
+
 	private RecyclerView mRoomView;
 	private ProgressBar mPBar;
 	private FirebaseDatabase mDatabase;
@@ -118,6 +120,24 @@ public class NearbyFragment extends Fragment {
 	public void onResume() { //run all the time in background
 		super.onResume();
 
+		restroomsRef.orderByKey().addValueEventListener(new ValueEventListener() {
+			@Override
+			public void onDataChange(DataSnapshot dataSnapshot) {
+				RestroomList.clear(); //clear ALL old onees
+				for (DataSnapshot data: dataSnapshot.getChildren()) {
+					Restroom room = data.getValue(Restroom.class);
+					RestroomList.add(room); //load in all restrooms refreshed
+				}
+				mAdaptor.notifyDataSetChanged(); //update screen
+			}
+
+			@Override
+			public void onCancelled(DatabaseError databaseError) {
+
+			}
+		});
+
+		/*
 		restroomsRef.orderByChild("name").addChildEventListener(new ChildEventListener() { //sort by name, doesn't really matter though
 			@Override
 			public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -129,21 +149,21 @@ public class NearbyFragment extends Fragment {
 			@Override
 			public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 				Restroom room = dataSnapshot.getValue(Restroom.class);
-				RestroomList.add(room);
+				RestroomList.add(room); //add it to the array list
 				mAdaptor.notifyDataSetChanged();
 			}
 
 			@Override
 			public void onChildRemoved(DataSnapshot dataSnapshot) {
 				Restroom room = dataSnapshot.getValue(Restroom.class);
-				RestroomList.add(room);
+				RestroomList.add(room); //add it to the array list
 				mAdaptor.notifyDataSetChanged();
 			}
 
 			@Override
 			public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 				Restroom room = dataSnapshot.getValue(Restroom.class);
-				RestroomList.add(room);
+				RestroomList.add(room); //add it to the array list
 				mAdaptor.notifyDataSetChanged();
 			}
 
@@ -151,7 +171,7 @@ public class NearbyFragment extends Fragment {
 			public void onCancelled(DatabaseError databaseError) {
 
 			}
-		});
+		});*/
 
 	}
 
