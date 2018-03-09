@@ -36,53 +36,52 @@ out every single time.
 Contact Brian to update database permissions *before* deploying. 
 
 ## To do:
-Updated March 4, 2018
+Updated March 8, 2018
 
 ### Home Page
 - Load image of restroom building to the template icon (Vince)
-- Allow users to click one restroom and link it to the page that shows all of it's data. (Vince)
 - Show star rating on the home page next to each restroom (Vince)
 
 ### Restroom Page
 - Load image of restroom building to template icon (Brian)
 - Load map image of restroom to template icon (Brian)
-- Send Emergency feature (Brian)
 - Use Helper class to get address depending on buiding name, link to Map activity (Brian)
 - Add to Favorites
 - Share Restroom 
-- Link the View Reviews button to the Reviews Page (Vince)
 
 ### Map Page
 - Everything (Brian)
 
-### Reviews Page
-- Add recycler adapter to recycler view the page for the reviews (Vince)
-- Indicate thtat there are no reveiws yet if array list size is 0 (Vince)
-
 ### Search Page
-- everything
+- no longer doing this
 
 ### Me Page
-- everything
+- no longer doing this
 
 ### Recent Page
-- everything
+- no longer doing this
 
 ### Favorites page
-- everything
+- make a separate array list in a static Favorites class to store the restrooms that have been favorited (Brian)
+- recycler view for the ones in this array list, otherwise say "No Favorites" (Vince)
 
 ## Completed:
-Updated March 4, 2018
+Updated March 8, 2018
 
 ### Home Page
 - Recycler View displays all restrooms with basic information (Vince)
 - Loads the restrooms into an array List for Recycler View (Brian) 
+- Allow users to click one restroom and link it to the page that shows all of it's data. (Vince)
 
 ### Restroom Page
 - Page shows basic information about restroom with amentities (Brian)
 - allows users to submit comments and put their names (Brian)
 - Reviews have a timestamp so reviews can be ordered by time (Brian) 
+- Send Emergency feature (Brian)
+- Link the View Reviews button to the Reviews Page (Vince)
 
 ### Reviews Page
 - Backend work done for loading in the Reviews for that restroom into an ArrayList (Brian)
+- Add recycler adapter to recycler view the page for the reviews (Vince)
+- Indicate thtat there are no reveiws yet if array list size is 0 (Vince)
 
