@@ -2,6 +2,7 @@ package hackerbois.bruinstrooms;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -42,10 +43,17 @@ public class NearbyAdapter extends RecyclerView.Adapter {
 	@Override
 	public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 		NearbyViewHolder nvh = (NearbyViewHolder) holder;
-		String unformatted = RestroomList.get(position).getName();
+		Restroom rest = RestroomList.get(position);
+		String unformatted = rest.getName();
 		//String gender = RestroomList.get(position).getGender();
 		nvh.roomName.setText(Helper.getLongName(unformatted)); //update room name to proper format
 		nvh.roomBuilding.setText(Helper.getBuilding(unformatted)); //update room building to proper format
+		if (!rest.getEmergencyStatus().equals("none")) { //if restroom has emergency turn red
+			nvh.roomName.setTextColor(Color.RED);
+		}
+		else {
+			nvh.roomName.setTextColor(Color.BLACK);
+		}
 	}
 
 	@Override

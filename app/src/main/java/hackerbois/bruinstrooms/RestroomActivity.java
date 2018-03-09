@@ -38,6 +38,8 @@ public class RestroomActivity extends AppCompatActivity {
     private boolean featuresOpened = false;
     private String formattedMessage;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +83,7 @@ public class RestroomActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
+        final Button EmergencyButton = (Button) findViewById(R.id.EmergencyButton);
         thisRestroom.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -129,6 +131,15 @@ public class RestroomActivity extends AppCompatActivity {
                 }
                 else {
                     numberReviews.setText(numRates + " ratings"); //0 or multiple number ratings
+                }
+
+                if (!rest.getEmergencyStatus().equals("none")){ //we have emergency
+                    EmergencyButton.setText("View Emergency"); //change button to view current emergency
+                    EmergencyButton.setTextColor(Color.RED);
+                }
+                else {
+                    EmergencyButton.setText("Send Emergency"); //change button to view current emergency
+                    EmergencyButton.setTextColor(Color.BLACK);
                 }
 
             }
