@@ -22,6 +22,8 @@ public class Restroom {
     private String mirrors;
     private String averageReview;
 
+    private String emergencyStatus = "none"; // all restrooms start with no emergencies
+
     public Restroom() {
         //Default constructor required for calls to DataSnapshat.getValue(User.class)
     }
@@ -70,6 +72,7 @@ public class Restroom {
         this.hasHandicap = hasHandicap;
         this.sinks = sinks;
         this.mirrors = mirrors;
+     //   this.emergencyStatus = "none";
     }
 
     //no setter functions for name or gender since those should never change
@@ -184,5 +187,13 @@ public class Restroom {
         double num = Integer.parseInt(this.numberOfRatings);
         double avg = sum/num;
         return String.valueOf(avg);
+    }
+
+    public String getEmergencyStatus() {
+        return this.emergencyStatus;
+    }
+
+    public void setEmergencyStatus(String status) {
+        this.emergencyStatus = status;
     }
 }

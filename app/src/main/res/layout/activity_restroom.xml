@@ -185,9 +185,9 @@
             android:layout_height="match_parent"
             android:layout_gravity="right"
             android:layout_weight="1"
-            android:textSize="8dp"
+            android:onClick="showEmergencyDialog"
             android:text="SEND EMERGENCY"
-            />
+            android:textSize="8dp" />
 
         <Button
             android:id="@+id/FavoriteButton"

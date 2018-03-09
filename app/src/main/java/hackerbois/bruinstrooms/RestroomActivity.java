@@ -2,11 +2,13 @@ package hackerbois.bruinstrooms;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -264,4 +266,87 @@ public class RestroomActivity extends AppCompatActivity {
     	this.startActivity(intent);
 	}
 
+    public void showEmergencyDialog(View view) {
+        // setup the alert builder
+        final Button EmergencyButton = (Button) findViewById(R.id.EmergencyButton);
+        if (rest.getEmergencyStatus().equals("none")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Choose an Emergency");
+
+            // add a list
+            String[] options = {"No toilet paper", "No paper towels", "Clogged toilet", "Flooded floor", "Clogged sink", "General Emergency"}; //
+            builder.setItems(options, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which) {
+                        case 0:
+                            rest.setEmergencyStatus("No toilet paper"); //set the new status based on the user choice
+                            ref.child("restrooms").child(rest.getName()).setValue(rest); //update the db
+                            EmergencyButton.setText("View Emergency"); //change button to view current emergency
+                            EmergencyButton.setTextColor(Color.RED);
+                            break;
+                        case 1:
+                            rest.setEmergencyStatus("No paper towels");
+                            ref.child("restrooms").child(rest.getName()).setValue(rest);
+                            EmergencyButton.setText("View Emergency"); //change button to view current emergency
+                            EmergencyButton.setTextColor(Color.RED);
+                            break;
+                        case 2:
+                            rest.setEmergencyStatus("Clogged toilet");
+                            ref.child("restrooms").child(rest.getName()).setValue(rest);
+                            EmergencyButton.setText("View Emergency"); //change button to view current emergency
+                            EmergencyButton.setTextColor(Color.RED);
+                            break;
+                        case 3:
+                            rest.setEmergencyStatus("Flooded floor");
+                            ref.child("restrooms").child(rest.getName()).setValue(rest);
+                            EmergencyButton.setText("View Emergency"); //change button to view current emergency
+                            EmergencyButton.setTextColor(Color.RED);
+                            break;
+                        case 4:
+                            rest.setEmergencyStatus("Clogged sink");
+                            ref.child("restrooms").child(rest.getName()).setValue(rest);
+                            EmergencyButton.setText("View Emergency"); //change button to view current emergency
+                            EmergencyButton.setTextColor(Color.RED);
+                            break;
+                        case 5:
+                            rest.setEmergencyStatus("General emergency");
+                            ref.child("restrooms").child(rest.getName()).setValue(rest);
+                            EmergencyButton.setText("View Emergency"); //change button to view current emergency
+                            EmergencyButton.setTextColor(Color.RED);
+                            break;
+                        default:
+                            rest.setEmergencyStatus("none");
+                            ref.child("restrooms").child(rest.getName()).setValue(rest);
+                    }
+                }
+            });
+
+            // create and show the alert dialog
+            AlertDialog dialog = builder.create(); //create the dialog box to pop up
+            dialog.show(); //show it to user
+
+        }
+        else { //already is an emergency so resolve it
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Current Emergency:\n" + rest.getEmergencyStatus());
+
+            builder.setPositiveButton("Mark as Resolved", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    rest.setEmergencyStatus("none"); //reset emergency status to none
+                    ref.child("restrooms").child(rest.getName()).setValue(rest); //update the db
+
+                    EmergencyButton.setText("Send Emergency"); //change button to view current emergency
+                    EmergencyButton.setTextColor(Color.BLACK);
+                }
+            });
+
+            // create and show the alert dialog
+            AlertDialog dialog = builder.create(); //create the dialog box to pop up
+            dialog.show(); //show it to user
+
+
+        }
+    }
 }
