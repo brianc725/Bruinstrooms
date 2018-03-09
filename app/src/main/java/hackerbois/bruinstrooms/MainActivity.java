@@ -265,6 +265,14 @@ public class MainActivity extends AppCompatActivity {
         restroomsRef.child("restrooms").child(EIV17114F.getName()).setValue(EIV17114F);
         Restroom EIV13144F = new Restroom("EIV13144F", "female", "0", "no", "4", "no", "3", "3");
         restroomsRef.child("restrooms").child(EIV13144F.getName()).setValue(EIV13144F);
+
+        Restroom PAB1707M = new Restroom("PAB1707M", "male", "6", "yes", "6", "yes", "4", "4");
+        restroomsRef.child("restrooms").child(PAB1707M.getName()).setValue(PAB1707M);
+        Restroom PAB1710F = new Restroom("PAB1710F", "female", "0", "no", "6", "yes", "4", "4");
+        restroomsRef.child("restrooms").child(PAB1710F.getName()).setValue(PAB1710F);
+
+        Restroom ACK2011A = new Restroom("ACK2011A", "all-gender", "1", "no", "1", "no", "1", "1");
+        restroomsRef.child("restrooms").child(ACK2011A.getName()).setValue(ACK2011A);
     }
 
 

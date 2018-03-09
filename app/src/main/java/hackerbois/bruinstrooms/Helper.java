@@ -67,7 +67,7 @@ public class Helper {
             addon = " - FEMALE";
         }
         else {
-            addon = " - ALL GENDER";
+            addon = " - ALL";
         }
         return shortname + addon;
     }
