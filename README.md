@@ -45,9 +45,9 @@ Updated March 12, 2018
 ### Restroom Page
 - Load image of restroom building to template icon (Brian)
 - Load map image of restroom to template icon (Brian)
-- Use Helper class to get address depending on buiding name, link to Map activity (Brian)
+~~- Use Helper class to get address depending on buiding name, link to Map activity (Brian)~~
 - Add to Favorites
-- Share Restroom 
+~~- Share Restroom~~ 
 
 ### Search Page
 - no longer doing this
