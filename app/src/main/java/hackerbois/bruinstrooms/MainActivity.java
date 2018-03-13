@@ -36,11 +36,11 @@ public class MainActivity extends AppCompatActivity {
 
         initializeBottomNavBar();
 
-        initializeRestrooms(); //TODO: Remove this call before publishing app or else data will
-                                //overwrite every time someone opens the app
+       // initializeRestrooms(); //Removed for deployment so db is not wiped every time.
+
 
 //        AsyncTaskRunner runner = new AsyncTaskRunner();
-//        runner.execute(); //TODO: VINCE THIS IS TEMPORARY
+//        runner.execute();
     }
 
     private void initializeBottomNavBar(){
