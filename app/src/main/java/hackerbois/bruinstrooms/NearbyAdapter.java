@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -54,6 +55,8 @@ public class NearbyAdapter extends RecyclerView.Adapter {
 		else {
 			nvh.roomName.setTextColor(Color.BLACK);
 		}
+
+		nvh.roomRating.setText(rest.getAverageReview() + "/5.0"); //set to show rating on cards
 	}
 
 	@Override
@@ -72,6 +75,7 @@ public class NearbyAdapter extends RecyclerView.Adapter {
 		ImageView roomPhoto;
 		TextView roomName;
 		TextView roomBuilding;
+		TextView roomRating;
 
 		NearbyViewHolder(View itemView) {
 			super(itemView);
@@ -79,6 +83,7 @@ public class NearbyAdapter extends RecyclerView.Adapter {
 			roomPhoto = itemView.findViewById(R.id.iv_room_photo);
 			roomName = itemView.findViewById(R.id.tv_room_name);
 			roomBuilding = itemView.findViewById(R.id.tv_room_building);
+			roomRating = itemView.findViewById(R.id.tv_room_rating);
 		}
 	}
 }
