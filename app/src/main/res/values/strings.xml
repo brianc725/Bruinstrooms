@@ -9,4 +9,5 @@
     <string name="sample_comment">[comment]</string>
     <string name="sample_timestamp">[insert timestamp here]</string>
     <string name="no_review">No Review</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
