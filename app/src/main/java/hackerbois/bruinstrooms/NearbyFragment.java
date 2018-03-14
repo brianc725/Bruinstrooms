@@ -23,7 +23,7 @@ import java.util.ArrayList;
  * Created by Vince Wu on 3/1/2018.
  */
 
-public class NearbyFragment extends Fragment {
+public class NearbyFragment extends android.support.v4.app.Fragment {
 
 	private RecyclerView mRoomView;
 	private ProgressBar mPBar;
@@ -31,6 +31,7 @@ public class NearbyFragment extends Fragment {
 	private DatabaseReference restroomsRef;
 	private ArrayList<Restroom> RestroomList;
 	private NearbyAdapter mAdaptor;
+	private FavFragment favFragment;
 
 	@Nullable
 	@Override
@@ -51,6 +52,13 @@ public class NearbyFragment extends Fragment {
 		return view;
 	}
 
+	public ArrayList<Restroom> getFavRoomList(){
+		return mAdaptor.getFavRoomList();
+	}
+
+	public void setFaveRoomList(ArrayList<Restroom> newList){
+		mAdaptor.refreshDataSource(newList);
+	}
 
 	private void initViews(View view) {
 		mPBar = view.findViewById(R.id.pb_pBar);
@@ -63,7 +71,7 @@ public class NearbyFragment extends Fragment {
 		mPBar.setVisibility(View.VISIBLE); //show loading circle
 
 
-		NearbyAdapter adapter = new NearbyAdapter(RestroomList);
+		NearbyAdapter adapter = new NearbyAdapter(RestroomList, favFragment);
 		mAdaptor = adapter;
 		mRoomView.setAdapter(adapter);
 		adapter.notifyDataSetChanged();
@@ -71,8 +79,9 @@ public class NearbyFragment extends Fragment {
 		mPBar.setVisibility(View.INVISIBLE);
 	}
 
-	public void passParam(FirebaseDatabase mDatabase) {
+	public void passParam(FirebaseDatabase mDatabase, FavFragment favFragment) {
 		this.mDatabase = mDatabase;
+		this.favFragment = favFragment;
 	}
 
 /*
@@ -129,6 +138,7 @@ public class NearbyFragment extends Fragment {
 					RestroomList.add(room); //load in all restrooms refreshed
 				}
 				mAdaptor.notifyDataSetChanged(); //update screen
+				mAdaptor.favFragment.refresh();
 			}
 
 			@Override
