@@ -14,17 +14,7 @@
         android:layout_marginBottom="2dp"
         android:orientation="horizontal">
 
-        <!--TODO: get real circular image, this is a temporary image source -->
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:id="@+id/RestroomProfilePhoto"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_android_black_24dp"
-            />
+
 
         <LinearLayout
             android:layout_width="wrap_content"
