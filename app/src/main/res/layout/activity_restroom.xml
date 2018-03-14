@@ -187,7 +187,7 @@
             android:layout_weight="1"
             android:onClick="showEmergencyDialog"
             android:text="SEND EMERGENCY"
-            android:textSize="8dp" />
+            android:textSize="10dp" />
 
         <Button
             android:id="@+id/FavoriteButton"
@@ -195,10 +195,10 @@
             android:layout_height="match_parent"
             android:layout_gravity="right"
             android:layout_weight="1"
-            android:textSize="8dp"
+            android:textSize="10dp"
             android:text="Add to Favorites"
             />
-
+<!--
         <Button
             android:id="@+id/ShareButton"
             android:layout_width="match_parent"
@@ -208,7 +208,7 @@
             android:textSize="8dp"
             android:text="Share Page"
             />
-
+-->
     </LinearLayout>
 
     <!-- Blank line across for separation-->

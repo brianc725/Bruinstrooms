@@ -36,7 +36,7 @@ out every single time.
 Contact Brian to update database permissions *before* deploying. 
 
 ## To do:
-Updated March 8, 2018
+Updated March 12, 2018
 
 ### Home Page
 - Load image of restroom building to the template icon (Vince)
@@ -45,12 +45,9 @@ Updated March 8, 2018
 ### Restroom Page
 - Load image of restroom building to template icon (Brian)
 - Load map image of restroom to template icon (Brian)
-- Use Helper class to get address depending on buiding name, link to Map activity (Brian)
+- ~~Use Helper class to get address depending on buiding name, link to Map activity (Brian)~~
 - Add to Favorites
-- Share Restroom 
-
-### Map Page
-- Everything (Brian)
+- ~~Share Restroom~~ 
 
 ### Search Page
 - no longer doing this
@@ -62,11 +59,11 @@ Updated March 8, 2018
 - no longer doing this
 
 ### Favorites page
-- make a separate array list in a static Favorites class to store the restrooms that have been favorited (Brian)
+- make a separate array list in a static Favorites class to store the restrooms that have been favorited (Vince)
 - recycler view for the ones in this array list, otherwise say "No Favorites" (Vince)
 
 ## Completed:
-Updated March 8, 2018
+Updated March 12, 2018
 
 ### Home Page
 - Recycler View displays all restrooms with basic information (Vince)
