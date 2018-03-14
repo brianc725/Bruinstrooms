@@ -38,7 +38,7 @@ public class RestroomActivity extends AppCompatActivity {
     private boolean featuresOpened = false;
     private String formattedMessage;
 
-
+    private TextView featuresCollapse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +56,9 @@ public class RestroomActivity extends AppCompatActivity {
 
         featuresLayout = (LinearLayout) findViewById(R.id.featuresContainer);
 
+        featuresCollapse = (TextView) findViewById(R.id.featuresCollapse);
+
+        /*
         featuresLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,18 +68,19 @@ public class RestroomActivity extends AppCompatActivity {
                 if (featuresOpened == false) {
                     //expand
                     featuresCollapse.setText("Amenities \n" + formattedMessage);
-                    featuresCollapse.setMaxLines(Integer.MAX_VALUE); //expand to add more lines
-                    featuresOpened = true; //say that the box is opened now
-                    featuresFull.setText("SHOW LESS"); //update the status for user
+                 //   featuresCollapse.setMaxLines(Integer.MAX_VALUE); //expand to add more lines
+                    featuresOpened = false; //say that the box is opened now
+                 //   featuresFull.setText("SHOW LESS"); //update the status for user
                 }
+
                 else {
                     //collapse
-                    featuresCollapse.setMaxLines(1); //reset lines to 1
+                    featuresCollapse.setMaxLines(2); //reset lines to 1
                     featuresOpened = false; //say box is closed again
                     featuresFull.setText("SHOW MORE"); //update status for user
                 }
             }
-        });
+        }); */
 
     } //end of onCreate
 
@@ -120,6 +124,8 @@ public class RestroomActivity extends AppCompatActivity {
                 formattedMessage = String.format("%-30.30s  %-30.30s%n", urinals, urinalDividers);
                 formattedMessage += String.format("%-30.30s  %-30.30s%n", stalls, hasHandicap);
                 formattedMessage += String.format("%-30.30s  %-30.30s", mirrors, sinks);
+
+                featuresCollapse.setText("Amenities \n" + formattedMessage);
 
                 float rating = Float.parseFloat(rest.getAverageReview()); //use average score to put stars
                 ratingBar.setRating(rating); //set rating takes in a float only
