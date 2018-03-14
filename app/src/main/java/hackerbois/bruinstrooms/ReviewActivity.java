@@ -70,7 +70,7 @@ public class ReviewActivity extends AppCompatActivity {
 			@Override
 			public void onDataChange(DataSnapshot dataSnapshot) {
 				int childs = (int) dataSnapshot.getChildrenCount();
-
+				ReviewsList.clear();
 				for (int i = 0; i < childs; i++) {
 					Reviews rev = dataSnapshot.child(String.valueOf(i)).getValue(Reviews.class); //get each child starting at "0" to "n-1"
 					ReviewsList.add(rev); //add to the list
