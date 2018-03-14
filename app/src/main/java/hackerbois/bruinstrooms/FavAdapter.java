@@ -1,34 +1,29 @@
 package hackerbois.bruinstrooms;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.design.widget.CheckableImageButton;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.Adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 /**
- * Created by Vince Wu on 3/1/2018.
+ * Created by Vince Wu on 3/14/2018.
  */
 
-public class NearbyAdapter extends RecyclerView.Adapter {
-	private ArrayList<Restroom> RestroomList;
+public class FavAdapter extends Adapter{
 	private ArrayList<Restroom> FavRoomList;
-	public FavFragment favFragment;
 
-	NearbyAdapter(ArrayList<Restroom> arg, FavFragment favFragment){
-		RestroomList = arg;
-		FavRoomList = new ArrayList<>();
-		this.favFragment = favFragment;
+	FavAdapter(ArrayList<Restroom> arg){
+		FavRoomList = arg;
 	}
 
 	@Override
@@ -40,26 +35,8 @@ public class NearbyAdapter extends RecyclerView.Adapter {
 			@Override
 			public void onClick(View view) {
 				Intent intent = new Intent(parentCopy.getContext(), RestroomActivity.class);
-				intent.putExtra("ROOM_NAME", RestroomList.get(nvh.getLayoutPosition()).getName());
+				intent.putExtra("ROOM_NAME", FavRoomList.get(nvh.getLayoutPosition()).getName());
 				parentCopy.getContext().startActivity(intent);
-			}
-		});
-		nvh.favStar.setOnClickListener(new View.OnClickListener() {
-			@SuppressLint("RestrictedApi")
-			@Override
-			public void onClick(View view) {
-				((CheckableImageButton)view).toggle();
-				boolean hasIt = false;
-				for(int i = 0; i < FavRoomList.size(); i++){
-					if(FavRoomList.get(i).getName().equals(RestroomList.get(nvh.getLayoutPosition()).getName())){
-						FavRoomList.remove(FavRoomList.get(i));
-						hasIt = true;
-					}
-				}
-				if(!hasIt){
-					FavRoomList.add(RestroomList.get(nvh.getLayoutPosition()));
-				}
-				favFragment.refresh();
 			}
 		});
 		return nvh;
@@ -69,11 +46,10 @@ public class NearbyAdapter extends RecyclerView.Adapter {
 		return FavRoomList;
 	}
 
-	@SuppressLint("RestrictedApi")
 	@Override
 	public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 		NearbyViewHolder nvh = (NearbyViewHolder) holder;
-		Restroom rest = RestroomList.get(position);
+		Restroom rest = FavRoomList.get(position);
 		String unformatted = rest.getName();
 		//String gender = RestroomList.get(position).getGender();
 		nvh.roomName.setText(Helper.getLongName(unformatted)); //update room name to proper format
@@ -84,26 +60,18 @@ public class NearbyAdapter extends RecyclerView.Adapter {
 		else {
 			nvh.roomName.setTextColor(Color.BLACK);
 		}
-
-		nvh.favStar.setChecked(false);
-		for(int i = 0; i < FavRoomList.size(); i++){
-			if(FavRoomList.get(i).getName().equals(unformatted)){
-				nvh.favStar.setChecked(true);
-				break;
-			}
-		}
-
-		nvh.roomRating.setText(rest.getAverageReview() + "/5.0"); //set to show rating on cards
+		nvh.favStar.setVisibility(View.GONE);
+		nvh.roomRating.setVisibility(View.GONE);
 	}
 
 	@Override
 	public int getItemCount() {
-		return RestroomList.size();
+		return FavRoomList.size();
 	}
 
 	//a method to refresh data source
 	public void refreshDataSource(ArrayList<Restroom> newSource){
-		RestroomList = newSource;
+		FavRoomList = newSource;
 		notifyDataSetChanged();
 	}
 

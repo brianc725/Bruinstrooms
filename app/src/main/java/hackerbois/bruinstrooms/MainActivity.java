@@ -2,13 +2,22 @@ package hackerbois.bruinstrooms;
 
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toolbar;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,8 +28,17 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+	private NearbyFragment nearbyFragment;
+	private FavFragment favFragment;
     private FirebaseDatabase mDatabase;
     private DatabaseReference restroomsRef;
+    private CustomViewPager mViewPager;
+    //private GoogleMap mMap;
+
+    public void FABAction(View v){
+        Intent intent = new Intent(this, MapsActivity.class);
+        this.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +48,22 @@ public class MainActivity extends AppCompatActivity {
         //Initialize database reference
         mDatabase = FirebaseDatabase.getInstance();
         restroomsRef = mDatabase.getReference();
+
+		nearbyFragment = new NearbyFragment();
+
+
+		favFragment = new FavFragment();
+		favFragment.passParam(nearbyFragment);
+        nearbyFragment.passParam(mDatabase, favFragment);
+
+
+
+        mViewPager = findViewById(R.id.fl_fragment_frame);
+		ViewPagerAdapter adapter = new ViewPagerAdapter (MainActivity.this.getSupportFragmentManager());
+		adapter.addFragment(nearbyFragment, "nearby");
+		adapter.addFragment(favFragment, "fav");
+//		adapter.addFragment(new MapsActivity(), "title");
+		mViewPager.setAdapter(adapter);
 
         //first page that user is gonna see
         loadNearbyFragment();
@@ -65,45 +99,14 @@ public class MainActivity extends AppCompatActivity {
 		});
 	}
 
-	private void loadActivityFragment(){
-		TesterFragment nearbyFragment = new TesterFragment();
-		nearbyFragment.setText("This is Activity");
-		FragmentTransaction ft = getFragmentManager().beginTransaction();
-		ft.replace(R.id.fl_fragment_frame, nearbyFragment);
-		ft.commit();
-	}
-
 	private void loadBookMarkFragment(){
-		TesterFragment nearbyFragment = new TesterFragment();
-		nearbyFragment.setText("This is BookMark");
-		FragmentTransaction ft = getFragmentManager().beginTransaction();
-		ft.replace(R.id.fl_fragment_frame, nearbyFragment);
-		ft.commit();
+		mViewPager.setCurrentItem(1);
 	}
 
 	private void loadNearbyFragment(){
-		NearbyFragment nearbyFragment = new NearbyFragment();
-		nearbyFragment.passParam(mDatabase);
-		FragmentTransaction ft = getFragmentManager().beginTransaction();
-		ft.replace(R.id.fl_fragment_frame, nearbyFragment);
-		ft.commit();
+		mViewPager.setCurrentItem(0);
 	}
 
-	private void loadMeFragment(){
-		TesterFragment nearbyFragment = new TesterFragment();
-		nearbyFragment.setText("This is Me");
-		FragmentTransaction ft = getFragmentManager().beginTransaction();
-		ft.replace(R.id.fl_fragment_frame, nearbyFragment);
-		ft.commit();
-	}
-
-	private void loadSearchFragment(){
-		TesterFragment nearbyFragment = new TesterFragment();
-		nearbyFragment.setText("This is Search");
-		FragmentTransaction ft = getFragmentManager().beginTransaction();
-		ft.replace(R.id.fl_fragment_frame, nearbyFragment);
-		ft.commit();
-	}
 
     private void initializeRestrooms() {
         /*
@@ -362,6 +365,8 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
+
 
     /*
     TODO: Firebase resources to delete later
