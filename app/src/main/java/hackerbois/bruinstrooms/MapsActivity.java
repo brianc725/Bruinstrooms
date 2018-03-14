@@ -50,6 +50,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(Engr4).title("Engineering 4"));
         mMap.addMarker(new MarkerOptions().position(Ackerman).title("Ackerman Union"));
         mMap.addMarker(new MarkerOptions().position(Pab).title("Physics and Astronomy Building"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center, 15));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(MS, 16));
     }
 }
