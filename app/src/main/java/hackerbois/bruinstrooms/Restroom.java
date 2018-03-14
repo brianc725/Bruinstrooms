@@ -186,7 +186,7 @@ public class Restroom {
         double sum = Double.parseDouble(this.sumRating);
         double num = Integer.parseInt(this.numberOfRatings);
         double avg = sum/num;
-        return String.valueOf(avg);
+        return String.format("%.1f", avg);
     }
 
     public String getEmergencyStatus() {
