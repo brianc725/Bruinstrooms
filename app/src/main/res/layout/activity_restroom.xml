@@ -7,259 +7,255 @@
     android:orientation="vertical"
     tools:context="hackerbois.bruinstrooms.RestroomActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginBottom="2dp"
-        android:orientation="horizontal">
 
 
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/RestroomBuilding"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="Building"
-                android:textAlignment="center"
-                android:layout_marginTop="8dp"
-                android:textSize="18dp"
-                android:textColor="@android:color/black"
-                />
-
-            <TextView
-                android:id="@+id/RestroomFloor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="Floor"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"
-                />
-
-        </LinearLayout>
-
-
-
-    </LinearLayout>
-
-    <!-- Blank line across for separation-->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/darkerGray">
-
-    </View>
-
-
-    <!-- Linear Layout for the Ratings -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_weight="20"
-            android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:textColor="@android:color/black"
-            android:text="Rating"
-            />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-        <RatingBar
-            android:id="@+id/RatingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:numStars="5"
-            android:stepSize="0.1"
-            android:isIndicator="true"
-            style="@style/restroomRatingBar"
-            />
-
-            <TextView
-                android:id="@+id/textNumReviews"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="4dp"
-                android:text="0 Reviews"
-                />
-            </LinearLayout> <!-- horizontal linear layout bar for stars and number -->
-
-
-        </LinearLayout> <!-- Vertical linear layout bar -->
-
-
-        <Button
-            android:id="@+id/SubmitReview"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:text="Rate"
-            android:onClick="showAlertDialogButtonClicked"
-            />
-
-    </LinearLayout> <!-- end of full rating bar linear layout -->
-
-    <!-- Blank line across for separation-->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/darkerGray">
-    </View>
-
-    <LinearLayout
-        android:id="@+id/featuresContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="2dp"
-        android:orientation="vertical"
-        android:clickable="true"
-        >
-
-        <TextView
-            android:id="@+id/featuresCollapse"
-            android:text="Amenities"
-            android:textColor="@android:color/black"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <!--
-        <TextView
-            android:id="@+id/featuresFull"
-            android:layout_marginTop="1.5dp"
-            android:text="SHOW MORE"
-            android:textColor="@color/lightestBlue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/> -->
-    </LinearLayout>
-
-    <!-- Blank line across for separation-->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/darkerGray">
-    </View>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Floor Plan"
-        android:textColor="@android:color/black"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        />
-
-
-    <!-- Image or something goes here -->
-
-
-    <!-- Blank line for separation -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/darkerGray">
-    </View>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/EmergencyButton"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:layout_weight="1"
-            android:onClick="showEmergencyDialog"
-            android:text="SEND EMERGENCY"
-             />
-
-        <!--
-
-        <Button
-            android:id="@+id/FavoriteButton"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:layout_weight="1"
-            android:textSize="10dp"
-            android:text="Add to Favorites"
-            />
-
-        <Button
-            android:id="@+id/ShareButton"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:layout_weight="1"
-            android:textSize="8dp"
-            android:text="Share Page"
-            />
--->
-    </LinearLayout>
-
-    <!-- Blank line across for separation-->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/darkerGray">
-
-    </View>
 
 
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        >
+        android:layout_height="match_parent">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
+
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/RestroomBuilding"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Building"
+                        android:textAlignment="center"
+                        android:layout_marginTop="8dp"
+                        android:textSize="18dp"
+                        android:textColor="@android:color/black"
+                        />
+
+                    <TextView
+                        android:id="@+id/RestroomFloor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Floor"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <!-- Blank line across for separation-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/darkerGray">
+
+            </View>
+
+
+            <!-- Linear Layout for the Ratings -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="20"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:textColor="@android:color/black"
+                        android:text="Rating"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RatingBar
+                            android:id="@+id/RatingBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:numStars="5"
+                            android:stepSize="0.1"
+                            android:isIndicator="true"
+                            style="@style/restroomRatingBar"
+                            />
+
+                        <TextView
+                            android:id="@+id/textNumReviews"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="4dp"
+                            android:text="0 Reviews"
+                            />
+                    </LinearLayout> <!-- horizontal linear layout bar for stars and number -->
+
+
+                </LinearLayout> <!-- Vertical linear layout bar -->
+
+
+                <Button
+                    android:id="@+id/SubmitReview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:text="Rate"
+                    android:backgroundTint="@color/deepGold"
+                    android:textColor="@color/white"
+                    android:onClick="showAlertDialogButtonClicked"
+                    />
+
+            </LinearLayout> <!-- end of full rating bar linear layout -->
+
+            <!-- Blank line across for separation-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/darkerGray">
+            </View>
+
+            <LinearLayout
+                android:id="@+id/featuresContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical"
+                android:clickable="true"
+                >
+
+                <TextView
+                    android:id="@+id/featuresCollapse"
+                    android:text="Amenities"
+                    android:textColor="@android:color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                <!--
+                <TextView
+                    android:id="@+id/featuresFull"
+                    android:layout_marginTop="1.5dp"
+                    android:text="SHOW MORE"
+                    android:textColor="@color/lightestBlue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/> -->
+            </LinearLayout>
+
+            <!-- Blank line across for separation-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/darkerGray">
+            </View>
 
             <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Reviews"
-            android:layout_marginTop="4dp"
-            android:textColor="@android:color/black"
-            android:textSize="18dp" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Floor Plan"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                />
+
+
+            <!-- Image or something goes here -->
+            <android.support.design.widget.CheckableImageButton
+                android:layout_width="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_height="265dp"
+                android:background="#00ffffff"
+                android:scaleType="fitStart"
+                android:src="@drawable/boelter_1"/>
+
+            <!-- Blank line for separation -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/darkerGray">
+            </View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/EmergencyButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:onClick="showEmergencyDialog"
+                    android:text="SEND EMERGENCY"
+                    />
+
+            </LinearLayout>
+
+            <!-- Blank line across for separation-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/darkerGray">
+
+            </View>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_gravity="center"
+                android:text="Reviews"
+                android:layout_marginTop="4dp"
+                android:textColor="@android:color/black"
+                android:textSize="18dp" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp">
 
                 <EditText
                     android:id="@+id/editReview"
@@ -279,6 +275,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:backgroundTint="@color/deepGold"
+                    android:textColor="@color/white"
                     android:onClick="ReviewSubmission"
                     android:text="SEND" />
             </LinearLayout>
@@ -288,13 +286,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="@color/darkerBlue"
+                android:textColor="@color/white"
                 android:text="VIEW ALL REVIEWS"
+                android:layout_margin="8dp"
                 android:onClick="viewReview"/>
 
-        </LinearLayout> <!-- Linear layout inside scroll view -->
+        </LinearLayout>
+     <!-- Linear layout inside scroll view -->
+
 
     </ScrollView>
-
 
 <!-- TODO: MOVE THE Reviews TO A SEPARATE PAGE
     <android.support.v7.widget.RecyclerView

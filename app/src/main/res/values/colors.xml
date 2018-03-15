@@ -12,4 +12,6 @@
     <color name="stableBlue">#03A9F4</color>
     <color name="darkerBlue">#0277BD</color>
     <color name="selectionGold">#ffd900</color>
+    <color name="deepGold">#F9A825</color>
+    <color name="red">#F44336</color>
 </resources>
