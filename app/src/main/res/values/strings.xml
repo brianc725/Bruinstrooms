@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Bruinstrooms</string>
-    <string name="bottom_label_nearby">Nearby</string>
+    <string name="bottom_label_nearby">Restrooms</string>
     <string name="bottom_label_search">Search</string>
     <string name="bottom_label_me">Me</string>
     <string name="bottom_label_activity">Activity</string>
