@@ -14,6 +14,10 @@ The frontend was created in Android Studio and backend utilized Firebase.
 We are looking to expand functionality to include geolocation for finding
 restrooms nearest you.
 
+## Want to try it?
+
+Simply download "WORKINGAPP.apk" onto your Android device and everything should be good to go!
+
 ## Setup
 
 Clone directory and you're good to go. Ensure target API is for your system to ensure proper working. 
