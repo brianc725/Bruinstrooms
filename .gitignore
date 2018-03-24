@@ -7,3 +7,6 @@
 /build
 /captures
 .externalNativeBuild
+/app/src/debug/res/values
+/app/src/release/res/values
+passwords.txt
